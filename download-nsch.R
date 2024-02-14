@@ -1,4 +1,4 @@
-data.dir <- "download-ncsh-data"
+data.dir <- "download-nsch-data"
 for(year in 2016:2022){
   year.html <- file.path(data.dir, paste0(year, ".html"))
   u <- paste0("https://www.census.gov/programs-surveys/nsch/data/datasets/nsch", year.html)
@@ -21,7 +21,7 @@ for(sas7bdat in Sys.glob(file.path(data.dir, "*.sas7bdat"))){
   data.list[[sas7bdat]] <- haven::read_sas(sas7bdat)
 }
 
-one.dta <- haven::read_dta("download-ncsh-data/nsch_2018_topical.dta")
+one.dta <- haven::read_dta("download-nsch-data/nsch_2018_topical.dta")
 one.dta$k2q33a
 ?haven::labelled
 
@@ -36,8 +36,8 @@ for(sas7bdat in names(data.list)){
 name.dt <- rbindlist(name.dt.list)
 dim.dt <- rbindlist(dim.dt.list)
 name.counts <- name.dt[, .(years=.N), by=column][order(-years, column)]
-data.table::fwrite(name.counts, "download-ncsh-column-counts.csv")
-data.table::fwrite(dim.dt, "download-ncsh-nrow-ncol.csv")
+data.table::fwrite(name.counts, "download-nsch-column-counts.csv")
+data.table::fwrite(dim.dt, "download-nsch-nrow-ncol.csv")
 common.cols <- name.counts[years==max(years), column]
 str(data.list[[1]][, common.cols], list.len=length(common.cols))
 
@@ -68,7 +68,7 @@ if(file.exists(define.csv)){
 ## label define screentime_lab  2  "1 hour", add
 define.dt[variable=="screentime"]
 
-fread("NCSH_columns.csv", header=TRUE)
+fread("NSCH_columns.csv", header=TRUE)
 
 define.not.missing <- define.dt[
   !grepl("[.]", value)
