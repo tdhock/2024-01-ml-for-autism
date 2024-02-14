@@ -1,0 +1,366 @@
+column_name,Meaning,category,Indicator,variable,prop.na
+A1_GRADE_IF,Imputation Flag for A1_GRADE_I,,,a1_grade_if,0
+FIPSST,State FIPS Code,,,fipsst,0
+FORMTYPE,Form Type,,,formtype,0
+FPL_IF,Imputation Flag for FPL,,,fpl_if,0
+FWC,Selected Child Weight,,,fwc,0
+HHCOUNT,Number of People Living at Address,home,,hhcount,0
+HHID,Unique HH ID,,,hhid,0
+HIGRADE_TVIS,"Highest Level of Education among Reported Adults, Detail",home,,higrade_tvis,0
+SC_AGE_LT10,Age of Selected Child - Less than 10 Months,age_sex,,sc_age_lt10,0
+SC_AGE_LT4,Age of Selected Child - Less than 4 Months,age_sex,,sc_age_lt4,0
+SC_AGE_LT6,Age of Selected Child - Less than 6 Months,age_sex,,sc_age_lt6,0
+SC_AGE_LT9,Age of Selected Child - Less than 9 Months,age_sex,,sc_age_lt9,0
+SC_HISPANIC_R_IF,Imputation Flag for SC_HISPANIC_R,,,sc_hispanic_r_if,0
+SC_RACE_R,"Race of Selected Child, Detailed",race,,sc_race_r,0
+SC_RACE_R_IF,Imputation Flag for SC_RACE_R,,,sc_race_r_if,0
+SC_SEX_IF,Imputation Flag for SC_SEX,,,sc_sex_if,0
+STRATUM,Sampling Stratum,,,stratum,0
+TOTAGE_0_5,Count of Children Ages 0 to 5 in Household,home,,totage_0_5,0
+TOTAGE_12_17,Count of Children Ages 12 to 17 in Household,home,,totage_12_17,0
+TOTAGE_6_11,Count of Children Ages 6 to 11 in Household,home,,totage_6_11,0
+TOTCSHCN,Count of Children with Special Health Care Needs in Household,home,,totcshcn,0
+TOTFEMALE,Count of Female Children in Household,home,,totfemale,0
+TOTMALE,Count of Male Children in Household,home,,totmale,0
+TOTNONSHCN,Count of Children without Special Health Care Needs in Household,home,,totnonshcn,0
+HIGRADE,Highest Level of Education among Reported Adults,home,,higrade,0
+SC_CSHCN,Special Health Care Needs Status of Selected Child,,,sc_cshcn,0
+SC_HISPANIC_R,"Hispanic Origin of Selected Child, Recode",race,,sc_hispanic_r,0
+SC_RACER,"Race of Selected Child, Recode",race,,sc_racer,0
+YEAR,Survey Year,,,year,0
+A1_GRADE,Adult 1 - Highest Completed Year of School,home,,a1_grade,0
+AGEPOS4,Birth Order of Selected Children in Household,home,,agepos4,0
+SC_AGE_YEARS,Age of Selected Child - In Years,age_sex,,sc_age_years,0
+SC_SEX,Sex of Selected Child,age_sex,,sc_sex,0
+TOTKIDS_R,Number of Children,home,,totkids_r,0
+S4Q01,Doctor Visit,,,s4q01,0.001179168
+SC_K2Q13,SC Medical Care Currently,,,sc_k2q13,0.001211923
+SC_K2Q19,SC Special Therapy Currently,,,sc_k2q19,0.001211923
+SC_K2Q22,SC Emotion Develop Behave Treatment,,,sc_k2q22,0.001342941
+SC_K2Q16,SC Limited Ability Currently,,,sc_k2q16,0.001408451
+SC_K2Q10,SC Medication Currently,,,sc_k2q10,0.00147396
+BLOOD,Blood Disorder,comorbidity,1.1,blood,0.001735997
+K2Q01_D,Teeth Description,comorbidity,,k2q01_d,0.002423845
+CYSTFIB,Cystic Fibrosis,comorbidity,1.1,cystfib,0.0024566
+ALLERGIES,Allergies,comorbidity,1.9,allergies,0.002587619
+K2Q01,Health Description,comorbidity,,k2q01,0.002685883
+HEADACHE,Headaches,comorbidity,1.9,headache,0.002718637
+DOWNSYN,Down Syndrome,comorbidity,1.11,downsyn,0.002784147
+K2Q37A,Speech Disorder,comorbidity,1.9,k2q37a,0.002915165
+HEART,Heart Condition,comorbidity,1.9,heart,0.003111693
+K2Q30A,Learning Disability,,1.9,k2q30a,0.003144448
+K2Q34A,Behavior Problems,,1.9,k2q34a,0.003144448
+CURRCOV,Health Insurance Coverage - Currently Covered (Use CURRINS),,,currcov,0.003177203
+CURRINS,Health Insurance Coverage - Currently Covered,,,currins,0.003177203
+BREATHING,Difficulty Breathing,,1.ten,breathing,0.003209957
+K2Q42A,Epilepsy,,1.9,k2q42a,0.003242712
+K2Q38A,Tourette Syndrome,,1.9,k2q38a,0.003308221
+K2Q33A,Anxiety,,2.1,k2q33a,0.003373731
+K4Q27,Needed Health Care Not Received,,,k4q27,0.003373731
+K2Q60A,Intellectual Disability,,1.9,k2q60a,0.00343924
+K3Q04_R,Health Insurance Coverage - Past 12 Months (Use INSGAP),,,k3q04_r,0.003537504
+K2Q35A,Autism ASD,,2.8,k2q35a,0.003734032
+K4Q01,Place Usually Goes Sick,,,k4q01,0.00393056
+BLINDNESS,Blindness,,1.9,blindness,0.003996069
+GENETIC,Genetic Condition,,1.9,genetic,0.004028824
+HOSPITALER,Hospital Emergency Room Visits,,4.7,hospitaler,0.004094333
+K2Q32A,Depression,,2.1,k2q32a,0.004127088
+K2Q61A,Cerebral Palsy,,1.1,k2q61a,0.004127088
+K2Q36A,Developmental Delay,,1.9,k2q36a,0.004192597
+K6Q15,Special Education Plan,,,k6q15,0.004225352
+K4Q22_R,Mental Health Professional Treatment,,4.4,k4q22_r,0.00442188
+K6Q71_R,Interest Curiosity,,,k6q71_r,0.004585653
+K5Q10,Need a Referral,,,k5q10,0.004683917
+SWALLOWING,Difficulty Swallowing,,1.1,swallowing,0.004749427
+K4Q04_R,Personal Doctor or Nurse - One or More,,,k4q04_r,0.004814936
+WGTCONC,Concerned About Weight,,,wgtconc,0.004880445
+K2Q43B,Deafness,,1.9,k2q43b,0.004945955
+HHLANGUAGE,Primary HH Language,,,hhlanguage,0.004945955
+BORNUSA,Born in the United States,,,bornusa,0.005044219
+PHYSICALPAIN,Difficulty Physical Pain,,1.1,physicalpain,0.005339011
+USUALGO,Place Usually Goes Routine Preventive Care,,,usualgo,0.005437275
+C4Q04,Frustrated In Efforts to Get Service,,,c4q04,0.005535539
+TOOTHACHES,Difficulty Toothaches,,1.1,toothaches,0.005666557
+STOMACH,Difficulty Stomach,,1.1,stomach,0.006092368
+CAVITIES,Difficulty Cavities,,1.1,cavities,0.00645267
+K4Q24_R,Specialist Visit,,4.5,k4q24_r,0.007468064
+BEDTIME,How Often - Go to Bed at Same Time,,,bedtime,0.007566328
+INSGAP,Health Insurance Coverage - Past 12 Months,,,insgap,0.008254176
+ARRANGEHC,Hours Spent Arranging Health Medical Care,,,arrangehc,0.00841795
+ATHOMEHC,Hours Spent Providing Home Health Care,,,athomehc,0.008647232
+K8Q30,How Well Handling Demands of Raising Children,,,k8q30,0.00940059
+K2Q40A,Asthma,,1.1,k2q40a,0.00940059
+ALTHEALTH,Alternative Health Care,,,althealth,0.009629872
+GUMBLEED,Difficulty Bleeding Gums,,1.1,gumbleed,0.009728136
+K4Q36,Received Special Services,,,k4q36,0.010153947
+HCABILITY,Health Affected Ability - How Often,,,hcability,0.010514248
+K2Q31A,ADD/ADHD,,2.7,k2q31a,0.010841795
+HOWMUCH,How Much Medical Health Care - Past 12 Months,,,howmuch,0.010907304
+K8Q31,How Often Have You Felt - Child Hard to Care For,,4.12e,k8q31,0.010940059
+K8Q32,How Often Have You Felt - Child Really Bothers You,,,k8q32,0.011824435
+HOUSE_GEN,Parental Nativity,,,house_gen,0.012217491
+K8Q35,Someone to Turn To for Emotional Support,,,k8q35,0.012512283
+K8Q34,How Often Have You Felt - Angry with Child,,,k8q34,0.012643302
+K2Q05,Born 3 Weeks Before Due Date,,,k2q05,0.012872584
+K4Q23,Emotions Concentration Behavior Medication,,,k4q23,0.012970848
+STOPWORK,Past 12 Months - Stopped Working because of Health Status,,,stopwork,0.013003603
+AVOIDCHG,Past 12 Months - Avoided Changing Jobs to Maintain Health Insurance,,,avoidchg,0.01326564
+INSTYPE,Insurance Type,,,instype,0.01382247
+CUTHOURS,Past 12 Months -Cut Hours because of Health Conditions,,,cuthours,0.014346544
+K8Q11,How Many Days - Family Eat Meal Together,,,k8q11,0.015198166
+TALKABOUT,Facing Problems - How Often Talk Together,,6.12,talkabout,0.015591222
+K9Q40,Anyone in Household Use Cigarettes,,,k9q40,0.016049787
+HOPEFUL,Facing Problems - How Often Stay Hopeful,,,hopeful,0.016442843
+K10Q11,Neighborhood - Sidewalks or Walking Paths,,,k10q11,0.016639371
+FOODSIT,Food Situation In Household - Past 12 Months,,,foodsit,0.016999672
+ACE1,Hard to Cover Basics Like Food or Housing,,,ace1,0.017097936
+WKTOSOLVE,Facing Problems - How Often Work Together,,,wktosolve,0.017130691
+K10Q23,Neighborhood - Vandalism,,,k10q23,0.01768752
+K10Q12,Neighborhood - Park or Playground,,,k10q12,0.017884048
+STRENGTHS,Facing Problems - How Often Draw on Strengths,,,strengths,0.01867016
+A1_BORN,Adult 1 - Where Born,,,a1_born,0.018702915
+A1_RELATION,Adult 1 - How Related to Child,,,a1_relation,0.018801179
+K10Q22,Neighborhood - Poorly Kept or Rundown Housing,,,k10q22,0.018964953
+K10Q20,Neighborhood - Litter or Garbage,,,k10q20,0.019161481
+K10Q14,Neighborhood - Library or Bookmobile,,,k10q14,0.019390763
+K10Q13,Neighborhood - Recreation Center,,,k10q13,0.020045857
+K10Q30,People In Neighborhood Help Each Other Out,,,k10q30,0.020242385
+K10Q40_R,Child is Safe In Neighborhood,,,k10q40_r,0.020569931
+K11Q61,Food Stamps - Past 12 Months,,,k11q61,0.021028497
+A1_AGE,Adult 1 - Age in Years,,,a1_age,0.021061251
+A1_PHYSHEALTH,Adult 1 - Physical Health,,,a1_physhealth,0.021323289
+A1_SEX,Adult 1 - Sex,,,a1_sex,0.021421553
+S9Q34,WIC Benefits - Past 12 Months,,,s9q34,0.021487062
+K11Q62,Free or Reduced Cost Meals - Past 12 Months,,,k11q62,0.021618081
+K10Q31,Watch Out for Other's Children,,,k10q31,0.021650835
+A1_MARITAL,Adult 1 - Marital Status,,,a1_marital,0.021749099
+FAMCOUNT,Number of People That Are Family Members,,,famcount,0.021847363
+K11Q60,Cash Assistance from Government - Past 12 Months,,,k11q60,0.021912873
+GOFORHELP,Know Where to Go For Help,,,goforhelp,0.021978382
+A1_MENTHEALTH,Adult 1 - Mental or Emotional Health,,,a1_menthealth,0.022371438
+MOMAGE,Age of Mother - Years,,,momage,0.022895513
+K11Q43R,How Many Times Moved to New Address,,,k11q43r,0.023059286
+ACE3,Child Experienced - Parent or Guardian Divorced,,,ace3,0.025417622
+A2_RELATION,Adult 2 - How Related to Child,,,a2_relation,0.025974451
+ACE10,Child Experienced - Treated Unfairly Because of Race,,,ace10,0.026629545
+ACE4,Child Experienced - Parent or Guardian Died,,,ace4,0.026727809
+ACE9,Child Experienced - Lived with Person with Alcohol/Drug Problem,,,ace9,0.028398297
+ACE7,Child Experienced - Victim of Violence,,,ace7,0.028529315
+ACE6,"Child Experienced - Adults Slap, Hit, Kick, Punch Others",,,ace6,0.028693089
+ACE5,Child Experienced - Parent or Guardian Time in Jail,,,ace5,0.028758598
+ACE8,Child Experienced - Lived with Mentally Ill,,,ace8,0.030363577
+BIRTHWT,Birth Weight Status,,1.7,birthwt,0.036881756
+BIRTHWT_OZ_S,"Standardized Birth Weight, Ounces",,1.8,birthwt_oz_s,0.036881756
+BIRTHWT_L,Birth Weight is Low (<2500g),,1.7,birthwt_l,0.036881756
+BIRTHWT_VL,Birth Weight is Very Low (<1500g),,1.8,birthwt_vl,0.036881756
+HCCOVOTH,Health Insurance - Other,,,hccovoth,0.046282345
+K11Q03R,Health Insurance - Indian Health Service,,,k11q03r,0.046282345
+K12Q03,Health Insurance - Current/Former Employer or Union,,,k12q03,0.046282345
+K12Q04,Health Insurance - Insurance Company,,,k12q04,0.046282345
+K12Q12,Health Insurance - Government Assistance Plan,,,k12q12,0.046282345
+TRICARE,Health Insurance - TRICARE,,,tricare,0.046282345
+K3Q20,Health Insurance - Benefits Cover Services,,,k3q20,0.047723551
+K3Q22,Health Insurance - Allow to See Provider,,,k3q22,0.048018343
+MENBEVCOV,Health Insurance - Cover Mental Behavioral Needs,,,menbevcov,0.048935473
+USUALSICK,Place Usually Goes Routine Same As Sick,,,usualsick,0.068850311
+MAKEFRIEND,Difficulty Making or Keeping Friends,,2.6b,makefriend,0.141107108
+A2_SEX,Adult 2 - Sex,,,a2_sex,0.168555519
+A2_AGE,Adult 2 - Age in Years,,,a2_age,0.168948575
+A2_GRADE,Adult 2 - Highest Completed Year of School,,,a2_grade,0.170324271
+A2_BORN,Adult 2 - Where Born,,,a2_born,0.171175893
+A2_MENTHEALTH,Adult 2 - Mental or Emotional Health,,,a2_menthealth,0.171306911
+A2_MARITAL,Adult 2 - Marital Status,,,a2_marital,0.171798231
+A2_PHYSHEALTH,Adult 2 - Physical Health,,,a2_physhealth,0.172322306
+DENTISTVISIT,Dental Provider Visit - How Many Visits,,,dentistvisit,0.180674746
+K4Q02_R,Place Usually Goes Sick - Where,,,k4q02_r,0.18568621
+DENTALSERV1,Dental Service - Check-up,,4.2,dentalserv1,0.198132984
+DENTALSERV2,Dental Service - Cleaning,,4.2,dentalserv2,0.198132984
+DENTALSERV3,Dental Service - Instructions on Toothbrushing,,4.2,dentalserv3,0.198132984
+DENTALSERV4,Dental Service - X-Rays,,4.2,dentalserv4,0.198132984
+DENTALSERV5,Dental Service - Fluoride Treatment,,4.2,dentalserv5,0.198132984
+DENTALSERV6,Dental Service - Sealant,,4.2,dentalserv6,0.198132984
+DENTALSERV7,Dental Service - Don't Know,,4.2,dentalserv7,0.198132984
+EMOSUPADV,Emotional Support - Health Condition Support Group,,,emosupadv,0.199868981
+EMOSUPFAM,Emotional Support - Other Family or Friend,,,emosupfam,0.199868981
+EMOSUPHCP,Emotional Support - Health Care Provider,,,emosuphcp,0.199868981
+EMOSUPMHP,Emotional Support - Counselor,,,emosupmhp,0.199868981
+EMOSUPOTH,Emotional Support - Other,,,emosupoth,0.199868981
+EMOSUPPEER,Emotional Support - Peer Support Group,,,emosuppeer,0.199868981
+EMOSUPSPO,Emotional Support - Spouse,,,emosupspo,0.199868981
+EMOSUPWOR,Emotional Support - Place of Worship,,,emosupwor,0.199868981
+K4Q20R,Doctor Visit - How Many Times,,,k4q20r,0.213625942
+K5Q31_R,"Communication with School, Child Care, Special Education Program",,4.12e,k5q31_r,0.218637406
+DECISIONS,Health Care Services Treatment Decisions,,,decisions,0.219456273
+K5Q20_R,Arrange Or Coordinate Care Among Doctors,,4.12e,k5q20_r,0.220340649
+K5Q40,How Often - Spend Enough Time,,,k5q40,0.220537177
+K5Q41,How Often - Listen Carefully,,,k5q41,0.222207665
+K5Q43,How Often - Provide Specific Information,,,k5q43,0.22266623
+K5Q42,How Often - Show Sensitivity,,,k5q42,0.222764494
+K5Q44,How Often - Feel Like a Partner,,,k5q44,0.223845398
+DOCROOM,Doctor Visit - How Long with Doctor,,,docroom,0.245758271
+K3Q25,Problems Paying for Medical or Health Care,,,k3q25,0.247428759
+K3Q21B,How Often Costs Reasonable,,,k3q21b,0.249033737
+WALKSTAIRS,Serious Difficulty Walking or Climbing Stairs,,1.12,walkstairs,0.286603341
+MEMORYCOND,"Serious Difficulty Concentrating, Remembering, or Making Decisions",,1.12,memorycond,0.287291189
+K7Q85_R,Stays Calm and In Control When Challenged,,,k7q85_r,0.287553226
+HOURSLEEP,Past Week - How Many Hours of Sleep Average,,,hoursleep,0.287782509
+PHYSACTIV,"Exercise, Play Sport, or Physical Activity for 60 Minutes",,,physactiv,0.287880773
+K7Q02R_R,Days Child Missed School - Illness or Injury,,,k7q02r_r,0.28814281
+DRESSING,Difficulty Dressing or Bathing,,1.12,dressing,0.288241074
+K7Q04R_R,Times School Contacted Household About Problems,,,k7q04r_r,0.289092696
+K7Q70_R,Argues Too Much,,,k7q70_r,0.289092696
+K7Q82_R,Cares About Doing Well in School,,,k7q82_r,0.289158205
+K7Q33,How Often Attend Events or Activities,,,k7q33,0.289223714
+REPEATED,Child Repeated Any Grades,,,repeated,0.289256469
+K7Q83_R,Does All Required Homework,,,k7q83_r,0.289485752
+K8Q21,Share Ideas or Talk About Things That Matter,,,k8q21,0.290992466
+K7Q30,Sports Team or Sports Lessons - Past 12 Months,,,k7q30,0.292400917
+K7Q84_R,Works to Finish Tasks Started,,,k7q84_r,0.294890272
+K7Q38,Paid Work or Regular Job - Past 12 Months,,,k7q38,0.295774648
+K7Q37,Community Service or Volunteer Work - Past 12 Months,,,k7q37,0.296691779
+K7Q31,Clubs or Organizations - Past 12 Months,,,k7q31,0.297412381
+METRO_YN,Metropolitan Statistical Area Status,,,metro_yn,0.298919096
+K7Q32,Organized Activities or Lessons - Past 12 Months,,,k7q32,0.299050115
+K10Q41_R,Child Is Safe at School,,,k10q41_r,0.299115624
+K9Q96,Other Adult Child Can Rely On For Advice,,,k9q96,0.300065509
+MPC_YN,Metropolitan Principal City Status,,,mpc_yn,0.403668523
+BMICLASS,"Body Mass Index, Percentile",,,bmiclass,0.494693744
+K5Q21,Arrange Or Coordinate Care Extra Help,,,k5q21,0.512872584
+K5Q30,Communication Satisfaction Among Doctors,,,k5q30,0.514575827
+CBSAFP_YN,Core Based Statistical Area Status,,,cbsafp_yn,0.520635441
+POSCHOICE,Doctor Worked with Child to Make Positive Choices,,,poschoice,0.592237144
+HEALTHKNOW,How Child Will Be Insured as an Adult,,,healthknow,0.592466426
+TREATCHILD,Doctors Treat Only Children,,,treatchild,0.592793973
+ERRANDALONE,Difficulty Doing Errands Alone,,1.12,errandalone,0.592793973
+WRITEPLAN,Doctor Worked with You and Child To Create Written Plan,,,writeplan,0.593023256
+CHANGEAGE,Doctor Worked with Child to Understand Health Care Changes,,,changeage,0.593318048
+GAINSKILLS,Doctor Worked with Child to Gain Skills to Manage Health,,,gainskills,0.593481821
+DOCPRIVATE,Child Speak with Doctor Privately,,,docprivate,0.6901736
+K6Q10,"Learning, Development, Behavior Concerns",,1.9,k6q10,0.720013102
+HANDS,Difficulty Hands,,1.1,hands,0.720242385
+HOURSLEEP05,Past Week - How Many Hours of Sleep Average,,,hoursleep05,0.720242385
+K6Q70_R,Affectionate,,,k6q70_r,0.720373403
+COORDINATION,Difficulty Coordination,,1.1,coordination,0.720406158
+K6Q72_R,Smiles Laughs,,,k6q72_r,0.720438913
+K6Q73_R,Bounces Back,,,k6q73_r,0.72070095
+ALLERGIES_CURR,Allergies Currently,,1.9,allergies_curr,0.721749099
+K6Q61_R,How Many Days Tell Stories or Sing to Child,,,k6q61_r,0.721847363
+K6Q60_R,How Many Days Read to Child,,,k6q60_r,0.721880118
+K6Q42R_NEVER,First Fed Formula - Never,,,k6q42r_never,0.721945627
+K6Q40,Breastfed,,1.3,k6q40,0.722371438
+K6Q27,Job Change Because Problems with Child Care,,,k6q27,0.722535211
+K6Q20,Receive Care From Others at Least 10 Hours Per Week,,,k6q20,0.722698985
+K6Q43R_NEVER,First Fed Other - Never,,,k6q43r_never,0.723517851
+FRSTSOLIDS_MO_S,First Fed Solids - Months (Standardized),,,frstsolids_mo_s,0.741172617
+BESTFORCHILD,How Often - Work to Decide Together Treatment,,,bestforchild,0.744546348
+DISCUSSOPT,How Often - Discussed Range of Options,,,discussopt,0.744579103
+RAISECONC,How Often - Easy to Raise Concerns or Disagree,,,raiseconc,0.745070423
+K6Q12,Questionnaire - Development Concerns,,,k6q12,0.748804455
+TREATADULT,Talked About Child Seeing Doctors Who Treat Adults,,,treatadult,0.766983295
+K6Q41R_STILL,Stopped Breastfeeding - Still Breastfeeding,,1.3,k6q41r_still,0.769538159
+ALLERGIES_DESC,Allergies Description,,1.9,allergies_desc,0.774713397
+FRSTFORMULA_MO_S,First Fed Formula - Months (Standardized),,,frstformula_mo_s,0.791320013
+SC_K2Q11,SC Medication Currently Condition,,,sc_k2q11,0.795021291
+BREASTFEDEND_MO_S,Stopped Breastfeeding - Months (Standardized),,1.3,breastfedend_mo_s,0.796167704
+K5Q11,Need a Referral - Problem,,4.12d,k5q11,0.815361939
+SC_K2Q12,SC Medication Currently 12 Months,,,sc_k2q12,0.819423518
+K4Q26,Specialist Visit - Problem,,4.5a,k4q26,0.827055355
+KEEPINSADULT,How to Obtain/Keep Health Insurance as Child Becomes Adult,,,keepinsadult,0.836062889
+K4Q38,Received Special Services - Currently,,,k4q38,0.837176548
+K4Q37,Received Special Services - Age in Years,,,k4q37,0.841172617
+HCEXTENT,Health Affected Ability - Extent,,,hcextent,0.849918113
+K9Q41,Anyone Smoke Inside of Home,,,k9q41,0.852374713
+RECOGBEGIN,Recognize Beginning Sound of a Word,,,recogbegin,0.852669505
+CLEAREXP,How Often - Explain Things Good Idea,,,clearexp,0.85270226
+HURTSAD,How Often - Show Concern,,,hurtsad,0.852800524
+RECOGABC,Recognize Letters of Alphabet,,,recogabc,0.852800524
+DISTRACTED,How Often - Easily Distracted,,6.12,distracted,0.852898788
+STARTSCHOOL,Has Child Started School,,,startschool,0.852898788
+PLAYWELL,How Often - Play Well with Others,,6.12,playwell,0.852931543
+WRITENAME,How Often - Write First Name,,6.12,writename,0.852964297
+FRSTFORMULA_WK_S,First Fed Formula - Weeks (Standardized),,,frstformula_wk_s,0.856370783
+SESCURRSVC,Special Education Plan - Currently,,,sescurrsvc,0.861021946
+SC_K2Q14,SC Medical Care Currently Condition,,,sc_k2q14,0.863478546
+SESPLANYR,Special Education Plan - Age in Years,,,sesplanyr,0.863707828
+A1_LIVEUSA,Adult 1 - Come to Live in the United States (Year),,,a1_liveusa,0.873206682
+K2Q40B,Asthma Currently,,1.1,k2q40b,0.876678677
+TREATNEED,Mental Health Professional Treatment - Problem,,4.4a,treatneed,0.878545693
+SC_K2Q15,SC Medical Care Currently 12 Months,,,sc_k2q15,0.880117917
+A2_LIVEUSA,Adult 2 - Come to Live in the United States (Year),,,a2_liveusa,0.883327874
+RECEIVECOPY,Receive Written Copy of Plan,,,receivecopy,0.889911562
+SC_K2Q23,SC Emotion Develop Behave 12 Months,,,sc_k2q23,0.89010809
+K2Q33B,Anxiety Currently,,2.1,k2q33b,0.896364232
+FRSTFORMULA_DAY_S,First Fed Formula - Days (Standardized),,,frstformula_day_s,0.897117589
+ADDTREAT,ADD/ADHD - Behavioral Treatment,,2.7c,addtreat,0.898165739
+K2Q31D,ADD/ADHD - Medication Currently,,2.7b,k2q31d,0.898853587
+K2Q31B,ADD/ADHD Currently,,2.7a,k2q31b,0.90393056
+K2Q33C,Anxiety Description,,1.9,k2q33c,0.911005568
+K2Q31C,ADD/ADHD Description,,2.8,k2q31c,0.913167376
+K5Q32,"Communication Satisfaction with School, Child Care, Special Education Program",,4.12e,k5q32,0.914215526
+SC_K2Q20,SC Special Therapy Currently Condition,,,sc_k2q20,0.91627907
+K2Q37B,Speech Disorder Currently,,1.9,k2q37b,0.921356043
+K2Q34B,Behavior Problems Currently,,1.9,k2q34b,0.921454307
+K2Q40C,Asthma Description,,1.9,k2q40c,0.922371438
+K6Q14A,Words and Phrases Concerns,,,k6q14a,0.93003603
+K6Q14B,Behaves and Gets Along Concerns,,,k6q14b,0.93003603
+K2Q30B,Learning Disability Currently,,1.9,k2q30b,0.932099574
+K2Q36B,Developmental Delay Currently,,1.9,k2q36b,0.932689158
+K2Q34C,Behavior Problems Description,,1.9,k2q34c,0.937242057
+K2Q30C,Learning Disability Description,,1.9,k2q30c,0.93747134
+SC_K2Q17,SC Limited Ability Currently Condition,,,sc_k2q17,0.939469374
+SC_K2Q21,SC Special Therapy Currently 12 Months,,,sc_k2q21,0.940255486
+K12Q01_A,Reason Not Covered - Change in Employer/Employment,,,k12q01_a,0.94133639
+K12Q01_B,Reason Not Covered - Cancellation Overdue Premiums,,,k12q01_b,0.94133639
+K12Q01_C,Reason Not Covered - Unaffordable,,,k12q01_c,0.94133639
+K12Q01_D,Reason Not Covered - Inadequate Benefits,,,k12q01_d,0.94133639
+K12Q01_E,Reason Not Covered - Inadequate Providers,,,k12q01_e,0.94133639
+K12Q01_F,Reason Not Covered - Application/Renewal Problems,,,k12q01_f,0.94133639
+K12Q01_G,Reason Not Covered - Other,,,k12q01_g,0.94133639
+SC_K2Q18,SC Limited Ability Currently 12 Months,,,sc_k2q18,0.944055028
+K2Q32B,Depression Currently,,2.1,k2q32b,0.949525057
+K2Q36C,Developmental Delay Description,,1.9,k2q36c,0.950343924
+K2Q37C,Speech Disorder Description,,1.9,k2q37c,0.952341959
+HEADACHE_CURR,Headaches Currently,,1.9,headache_curr,0.952898788
+SPCSERVMO,Received Special Services - Age in Months,,,spcservmo,0.956796594
+BREASTFEDEND_WK_S,Stopped Breastfeeding - Weeks (Standardized),,1.3,breastfedend_wk_s,0.958008516
+K5Q22,Arrange Or Coordinate As Much Help As Wanted,,,k5q22,0.959842778
+K2Q32C,Depression Description,,1.9,k2q32c,0.960890927
+GENETIC_DESC,Genetic Condition Description,,1.9,genetic_desc,0.963904356
+HEADACHE_DESC,Headaches Description,,1.9,headache_desc,0.965574844
+LIVEUSA_YR,How Long Living in the United States - Years,,,liveusa_yr,0.968358991
+SLEEPPOS,Position Most Often Lay Your Baby Down to Sleep,,,sleeppos,0.969210613
+AUTISMTREAT,Autism ASD - Behavioral Treatment,,2.8c,autismtreat,0.971798231
+AUTISMMED,Autism ASD - Medication Currently,,2.8b,autismmed,0.972256797
+K2Q35B,Autism ASD Currently,,2.8a,k2q35b,0.972649853
+K2Q35D,Autism ASD - Doctor Diagnose,,,k2q35d,0.973108418
+APPOINTMENT,Needed Health Care Not Received Due to - Getting Appointment,,,appointment,0.973141173
+AVAILABLE,Needed Health Care Not Received Due to - Not Available,,,available,0.973141173
+ISSUECOST,Needed Health Care Not Received Due to - Cost,,,issuecost,0.973141173
+NOTELIG,Needed Health Care Not Received Due to - Not Eligible,,,notelig,0.973141173
+NOTOPEN,Needed Health Care Not Received Due to - Office Not Open,,,notopen,0.973141173
+TRANSPORTCC,Needed Health Care Not Received Due to - Getting Transportation,,,transportcc,0.973141173
+K4Q28X01,Needed Health Care Not Received - Medical Care,,,k4q28x01,0.973501474
+K4Q28X02,Needed Health Care Not Received - Dental Care,,,k4q28x02,0.973501474
+K4Q28X03,Needed Health Care Not Received - Vision Care,,,k4q28x03,0.973501474
+K4Q28X04,Needed Health Care Not Received - Mental Health Services,,,k4q28x04,0.973501474
+K4Q28X05,Needed Health Care Not Received - Other,,,k4q28x05,0.973501474
+K4Q28X_EAR,Needed Health Care Not Received - Hearing Care,,,k4q28x_ear,0.973501474
+K2Q35C,Autism ASD Description,,2.7,k2q35c,0.974418605
+K2Q35A_1_YEARS,Autism ASD How Old - Age in Years,,,k2q35a_1_years,0.974582378
+HEART_CURR,Heart Condition Currently,,1.9,heart_curr,0.975237471
+K6Q13A,Talks or Speech Sounds Concerns,,,k6q13a,0.978152637
+K6Q13B,Interaction Concerns,,,k6q13b,0.978152637
+SESPLANMO,Special Education Plan - Age in Months,,,sesplanmo,0.986341304
+HEART_DESC,Heart Condition Description,,1.9,heart_desc,0.98673436
+FRSTSOLIDS_WK_S,First Fed Solids - Weeks (Standardized),,,frstsolids_wk_s,0.987356698
+K2Q42B,Epilepsy Currently,,1.9,k2q42b,0.98961677
+K2Q60B,Intellectual Disability Currently,,1.9,k2q60b,0.990271864
+K2Q60C,Intellectual Disability Description,,1.9,k2q60c,0.990894202
+FRSTSOLIDS_DAY_S,First Fed Solids - Days (Standardized),,,frstsolids_day_s,0.992237144
+K2Q42C,Epilepsy Description,,1.9,k2q42c,0.994136915
+BLOOD_DESC,Blood Disorder Description,,1.9,blood_desc,0.995119555
+BREASTFEDEND_DAY_S,Stopped Breastfeeding - Days (Standardized),,1.3,breastfedend_day_s,0.996298723
+CERPALS_DESC,Cerebral Palsy Description,,1.9,cerpals_desc,0.997150344
+K2Q38B,Tourette Syndrome Currently,,1.9,k2q38b,0.997379627
+K2Q38C,Tourette Syndrome Description,,1.9,k2q38c,0.998198493
+LIVEUSA_MO,How Long Living in the United States - Months,,,liveusa_mo,0.998198493

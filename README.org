@@ -4,3 +4,5 @@
 is the source file for [[file:NSCH_categories.csv]]
 
 [[file:download-nsch.R]] makes [[file:download-nsch-nrow-ncol.csv]] and [[file:download-nsch-column-counts.csv]]
+and [[file:NSCH_categories_NA_counts.csv]] after which I manually added different categories for the least missing columns,
+[[file:NSCH_categories_NA_counts_TDH.csv]]

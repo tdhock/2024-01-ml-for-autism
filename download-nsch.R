@@ -1,3 +1,4 @@
+library(data.table)
 data.dir <- "download-nsch-data"
 for(year in 2016:2022){
   year.html <- file.path(data.dir, paste0(year, ".html"))
@@ -25,7 +26,6 @@ one.dta <- haven::read_dta("download-nsch-data/nsch_2018_topical.dta")
 one.dta$k2q33a
 ?haven::labelled
 
-library(data.table)
 name.dt.list <- list()
 dim.dt.list <- list()
 for(sas7bdat in names(data.list)){
@@ -41,6 +41,7 @@ data.table::fwrite(dim.dt, "download-nsch-nrow-ncol.csv")
 common.cols <- name.counts[years==max(years), column]
 str(data.list[[1]][, common.cols], list.len=length(common.cols))
 
+## TODO process do files for several years.
 year.do.vec <- Sys.glob(file.path(data.dir, "*.do"))
 year.do <- year.do.vec[1]
 year.dta <- sub("do$", "dta", year.do)
@@ -67,8 +68,6 @@ if(file.exists(define.csv)){
 ## label define screentime_lab  1  "Less than 1 hour"
 ## label define screentime_lab  2  "1 hour", add
 define.dt[variable=="screentime"]
-
-fread("NSCH_columns.csv", header=TRUE)
 
 define.not.missing <- define.dt[
   !grepl("[.]", value)
@@ -119,9 +118,32 @@ define.not.missing[, {
 ## fpl_i6 50 or less
 ## fpl_i6 400 or more
 year.dt[["momage"]]
+table(year.dt[["k6q40"]])
+
+names(year.dt)
 
 define.dt[variable=="fipsst"]
 
+NSCH_categories <- fread(
+  "NSCH_categories.csv", header=TRUE
+)[
+, variable := tolower(column_name)
+]
+NSCH_categories[category=="Output"]
+table(year.dt$k2q35a,useNA="always")#114 NA, use this one.
+table(year.dt$k2q35b,useNA="always")#29695 NA, ignore.
+NSCH_categories[!category%in%c("","yellow","orange","Output","Comorbidity")]
+some.categories <- c("Services","Residence","birth")
+some.columns <- NSCH_categories[category%in%some.categories]
+for(variable in some.columns$variable){
+  print(variable)
+  print(table(year.dt[[variable]], useNA="always"))
+}
+(prop.na.vec <- sort(colMeans(is.na(year.dt))))
+NSCH_categories[names(prop.na.vec), prop.na := prop.na.vec, on="variable"]
+fwrite(NSCH_categories[order(prop.na, category, variable)], "NSCH_categories_NA_counts.csv")
+NSCH_categories_TDH <- setkey(fread("NSCH_categories_NA_counts_TDH.csv"), category, column_name)
+NSCH_categories_TDH[category!=""]
 
 ## label var a2_if  "Imputation Flag for A2 Variables"
 ## cap label values a2_if a2_if_lab
