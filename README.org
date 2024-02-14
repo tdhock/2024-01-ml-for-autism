@@ -1,6 +1,6 @@
 ** 18 Dec 2023
 
 [[https://docs.google.com/spreadsheets/d/19Tm75T4wNN4yITlXuUMNVc22yzHmmzVcMY1GBVGsEnQ/edit#gid=0]]
-is the source file for [[file:NCSH_columns.csv]]
+is the source file for [[file:NSCH_categories.csv]]
 
-[[file:download-ncsh.R]] makes [[file:download-ncsh-nrow-ncol.csv]] and [[file:download-ncsh-column-counts.csv]]
+[[file:download-nsch.R]] makes [[file:download-nsch-nrow-ncol.csv]] and [[file:download-nsch-column-counts.csv]]
