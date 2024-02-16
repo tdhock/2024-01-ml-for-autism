@@ -1,14 +1,18 @@
 library(data.table)
 data.dir <- "download-nsch-data"
+nsch.prefix <- "https://www.census.gov/programs-surveys/nsch/data/datasets."
 for(year in 2016:2022){
-  year.html <- file.path(data.dir, paste0(year, ".html"))
-  u <- paste0("https://www.census.gov/programs-surveys/nsch/data/datasets/nsch", year.html)
-  if(!file.exists(year.html))download.file(u, year.html)
+  year.html <- paste0(year, ".html")
+  ##https://www.census.gov/programs-surveys/nsch/data/datasets.2020.html
+  u <- paste0(nsch.prefix, year.html)
+  dest.html <- file.path(data.dir, year.html)
+  if(!file.exists(dest.html))download.file(u, dest.html)
   url.dt <- nc::capture_all_str(
-    year.html,
+    dest.html,
     'href="',
     url=".*?topical.*?zip",
     '"')
+  if(nrow(url.dt)==0)stop("no urls on ", dest.html)
   for(url.i in 1:nrow(url.dt)){
     zip.url <- paste0("http:", url.dt[url.i, url])
     year.zip <- file.path(data.dir, basename(zip.url))
