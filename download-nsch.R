@@ -1,5 +1,6 @@
 library(data.table)
 data.dir <- "download-nsch-data"
+dir.create(data.dir, showWarnings = FALSE)
 nsch.prefix <- "https://www.census.gov/programs-surveys/nsch/data/datasets."
 for(year in 2016:2022){
   year.html <- paste0(year, ".html")
