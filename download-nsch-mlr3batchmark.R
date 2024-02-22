@@ -11,17 +11,16 @@ for(feature.names in names(feature.names.list)){
   feature.names.vec <- feature.names.list[[feature.names]]
   task.dt <- two.years[, c("survey_year", "Autism", feature.names.vec), with=FALSE]
   task_id <- sprintf("%s.%d", feature.names, length(feature.names.vec))
-  task.list[[task_id]] <- mlr3::TaskClassif$new(
-    task_id, task.dt, target="Autism"
-  )$set_col_roles(
-    "survey_year",c("group","stratum")
-  )$set_col_roles(
-    "Autism",c("target","stratum")
-  )
+  one.task <- mlr3::TaskClassif$new(
+    task_id, task.dt, target="Autism")
+  one.task$col_roles$stratum <- c("survey_year","Autism")
+  one.task$col_roles$group <- "survey_year"
+  task.list[[task_id]] <- one.task
 }
 
-subtrain.valid.cv <- mlr3::ResamplingCV$new()
+subtrain.valid.cv <- mlr3resampling::ResamplingIgnoreGroupCV$new()
 subtrain.valid.cv$param_set$values$folds <- 5
+##subtrain.valid.cv$instantiate(task.list[[1]])
 same_other_cv <- mlr3resampling::ResamplingSameOtherCV$new()
 same_other_cv$param_set$values$folds <- 10
 knn.learner <- mlr3learners::LearnerClassifKKNN$new()
@@ -43,6 +42,19 @@ xgboost.tuned = mlr3tuning::auto_tuner(
   learner = xgboost.learner,
   resampling = subtrain.valid.cv,
   measure = mlr3::msr("classif.auc"))
+factor_pipeline <- mlr3pipelines::`%>>%`(
+  mlr3pipelines::po("removeconstants"),
+  mlr3pipelines::po(
+    "encode",
+    method = "one-hot",
+    id = "low_card_enc"))
+xgboost.pipeline <- mlr3::as_learner(mlr3pipelines::`%>>%`(factor_pipeline, xgboost.tuned))
+if(FALSE){
+  ## Error : <TaskClassif:age_sex.6> has the following unsupported feature types: factor
+  ## https://mlr3book.mlr-org.com/chapters/chapter9/preprocessing.html#factor-encoding
+  xgboost.tuned$train(task.list[[1]])
+  xgboost.pipeline$train(task.list[[1]])
+}
 ranger.learner <- mlr3learners::LearnerClassifRanger$new()
 ranger.learner$predict_type <- "prob"
 ranger.tuned = mlr3tuning::auto_tuner(
@@ -50,14 +62,14 @@ ranger.tuned = mlr3tuning::auto_tuner(
   learner = mlr3tuningspaces::lts(ranger.learner),
   resampling = subtrain.valid.cv,
   measure = mlr3::msr("classif.auc"))
-(reg.learner.list <- list(
-  ranger.tuned, xgboost.tuned, knn.tuned,
+(learner.list <- list(
+  ranger.tuned, xgboost.pipeline, knn.tuned,
   mlr3learners::LearnerClassifCVGlmnet$new(),
   mlr3::LearnerClassifRpart$new(),
   mlr3::LearnerClassifFeatureless$new()))
 (reg.bench.grid <- mlr3::benchmark_grid(
   task.list,
-  reg.learner.list,
+  learner.list,
   same_other_cv))
 
 reg.dir <- "download-nsch-mlr3batchmark-registry"
@@ -78,12 +90,12 @@ batchtools::submitJobs(chunks, resources=list(
   ntasks=1, #>1 for MPI jobs.
   chunks.as.arrayjobs=TRUE), reg=reg)
 
-
-reg.dir <- "data-batchmark-registry"
 reg=batchtools::loadRegistry(reg.dir)
 print(batchtools::getStatus(reg=reg))
 jobs.after <- batchtools::getJobTable(reg=reg)
 table(jobs.after$error)
+jobs.after[, learner_id := sapply(algo.pars, function(dt)dt[["learner_id"]]) ]
+jobs.after[!is.na(error), .(error, task_id, learner_id)]
 ids <- jobs.after[!is.na(done) & is.na(error), job.id]
 ignore.learner <- function(L){
   L$learner_state$model <- NULL
