@@ -1,3 +1,17 @@
+** 22 Feb 2024
+
+[[file:download-nsch-convert-do.R]] makes [[file:download-nsch-convert-do-2019-2020.csv]]
+
+#+BEGIN_SRC R
+> out.dt[, table(survey_year, Autism)]
+           Autism
+survey_year   Yes    No
+       2019   859 28003
+       2020  1255 40826
+#+END_SRC
+
+[[file:download-nsch-counts.R]] separated out from [[file:download-nsch.R]]
+
 ** 18 Dec 2023
 
 [[https://docs.google.com/spreadsheets/d/19Tm75T4wNN4yITlXuUMNVc22yzHmmzVcMY1GBVGsEnQ/edit#gid=0]]
