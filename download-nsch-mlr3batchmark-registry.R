@@ -54,20 +54,28 @@ print(gg)
 dev.off()
 
 roc.dt.list <- list()
+roc.points.list <- list()
 for(row.i in 1:nrow(score.some)){
   score.row <- score.some[row.i]
   pred.obj <- score.row$prediction[[1]]
-  roc.df <- WeightedROC::WeightedROC(
-    pred.obj$data$prob[,"Yes"],
-    ifelse(pred.obj$data$truth=="Yes", 1, 0))
-  roc.dt.list[[row.i]] <- data.table(
-    score.row[, .(Algorithm, test.fold)],
-    roc.df)
+  prob.vec <- pred.obj$data$prob[,"Yes"]
+  roc.dt <- data.table(WeightedROC::WeightedROC(
+    prob.vec,
+    ifelse(pred.obj$data$truth=="Yes", 1, 0)
+  ))[, prev.thresh := c(-Inf, threshold[-.N])][]
+  pred.point <- roc.dt[prev.thresh < 0.5 & 0.5 < threshold]
+  if(nrow(pred.point)!=1){
+    stop("more than one pred point")
+  }
+  meta.dt <- score.row[, .(Algorithm, test.fold)]
+  roc.points.list[[row.i]] <- data.table(meta.dt, pred.point)
+  roc.dt.list[[row.i]] <- data.table(meta.dt, roc.dt)
 }
 (roc.dt <- rbindlist(roc.dt.list))
+(roc.points <- rbindlist(roc.points.list))
 roc.breaks <- seq(0, 1, by=0.2)
 gg <- ggplot()+
-  ggtitle("Survey year 2020, all 364 features,\none ROC curve per cross-validation fold")+
+  ggtitle("Survey year 2020, all 364 features,\nOne ROC curve per cross-validation fold")+
   geom_path(aes(
     FPR, TPR, color=Algorithm, group=test.fold),
     data=roc.dt)+
@@ -78,6 +86,51 @@ gg <- ggplot()+
   scale_y_continuous(
     "True Positive Rate",
     breaks=roc.breaks)
-png("download-nsch-mlr3batchmark-registry-one-set-all-features-roc.png", width=6, height=6, units="in", res=100)
+png("download-nsch-mlr3batchmark-registry-one-set-all-features-roc.png", width=7, height=6, units="in", res=100)
+print(gg)
+dev.off()
+gg.point <- gg+
+  geom_point(aes(
+    FPR, TPR, color=Algorithm),
+    shape=21,
+    fill="white",
+    data=roc.points)
+png("download-nsch-mlr3batchmark-registry-one-set-all-features-roc-point.png", width=7, height=6, units="in", res=100)
+print(gg.point)
+dev.off()
+gg.zoom <- gg.point+
+  ggtitle("Survey year 2020, all 364 features, zoom to show FPR/TPR of predictions")+
+  theme(panel.spacing=grid::unit(2, "lines"))+
+  facet_wrap("test.fold", ncol=5, labeller=label_both)+
+  scale_x_continuous(
+    "False Positive Rate",
+    breaks=seq(0,0.01,by=0.005))+
+  scale_y_continuous(
+    "True Positive Rate",
+    breaks=seq(0,0.5,by=0.1))+
+  coord_cartesian(xlim=c(0,0.01),ylim=c(0,0.5))
+png("download-nsch-mlr3batchmark-registry-one-set-all-features-roc-zoom.png", width=10, height=6, units="in", res=100)
+print(gg.zoom)
+dev.off()
+
+gg <- ggplot()+
+  ggtitle("Survey year 2020, all 364 features, AUC over 10 cross-validation folds")+
+  geom_segment(aes(
+    classif.auc_mean+classif.auc_sd, Algorithm,
+    xend=classif.auc_mean-classif.auc_sd, yend=Algorithm),
+    data=stats.some)+
+  geom_point(aes(
+    classif.auc_mean, Algorithm),
+    shape=1,
+    data=stats.some)+
+  geom_text(aes(
+    classif.auc_mean, Algorithm,
+    hjust=ifelse(Algorithm=="featureless", 0, 1),
+    label=sprintf("%.4f±%.4f", classif.auc_mean, classif.auc_sd)),
+    vjust=1.5,
+    data=stats.some)+
+  scale_x_continuous(
+    "Area Under the test set ROC Curve, mean±SD over 10 train/test splits")
+png("download-nsch-mlr3batchmark-registry-one-set-all-features-auc.png", width=8, height=2, units="in", res=100)
 print(gg)
 dev.off()
