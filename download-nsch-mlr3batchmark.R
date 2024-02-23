@@ -1,15 +1,17 @@
 library(data.table)
-NSCH_categories_TDH <- setkey(fread(
-  "NSCH_categories_NA_counts_TDH.csv"
-)[, column_name := tolower(column_name)], category, column_name)
-input.meta.dt <- NSCH_categories_TDH[category!=""]
+category366 <- fread("download-nsch-convert-do-2019-2020-366cols-categories.csv")
+table(category366$category)
+input.meta.dt <- category366[category!=""]
 feature.names.list <- with(input.meta.dt, split(column_name, category))
 feature.names.list[["all"]] <- input.meta.dt$column_name
-two.years <- fread("download-nsch-convert-do-2019-2020.csv", stringsAsFactors=TRUE)
+two.years <- fread("download-nsch-convert-do-2019-2020-366cols.csv", stringsAsFactors=TRUE)
+names(two.years)
 task.list <- list()
 for(feature.names in names(feature.names.list)){
   feature.names.vec <- feature.names.list[[feature.names]]
-  task.dt <- two.years[, c("survey_year", "Autism", feature.names.vec), with=FALSE]
+  task.col.names <- c("survey_year", "Autism", feature.names.vec)
+  task.dt <- two.years[, task.col.names, with=FALSE]
+  setnames(task.dt, gsub("'", "", gsub("[$]", "USD", gsub("[],:;+?()/<> =[-]", "_", task.col.names, perl=TRUE))))
   task_id <- sprintf("%s.%d", feature.names, length(feature.names.vec))
   one.task <- mlr3::TaskClassif$new(
     task_id, task.dt, target="Autism")
@@ -31,6 +33,7 @@ knn.tuned = mlr3tuning::auto_tuner(
   learner = knn.learner,
   resampling = subtrain.valid.cv,
   measure = mlr3::msr("classif.auc"))
+knn.tuned$id <- "classif.nearest_neighbors"
 xgboost.learner <- mlr3learners::LearnerClassifXgboost$new()
 xgboost.learner$predict_type <- "prob"
 xgboost.learner$param_set$values$eta <- paradox::to_tune(0.001, 1, log=TRUE)
@@ -42,13 +45,7 @@ xgboost.tuned = mlr3tuning::auto_tuner(
   learner = xgboost.learner,
   resampling = subtrain.valid.cv,
   measure = mlr3::msr("classif.auc"))
-factor_pipeline <- mlr3pipelines::`%>>%`(
-  mlr3pipelines::po("removeconstants"),
-  mlr3pipelines::po(
-    "encode",
-    method = "one-hot",
-    id = "low_card_enc"))
-xgboost.pipeline <- mlr3::as_learner(mlr3pipelines::`%>>%`(factor_pipeline, xgboost.tuned))
+xgboost.tuned$id <- "classif.xgboost"
 if(FALSE){
   ## Error : <TaskClassif:age_sex.6> has the following unsupported feature types: factor
   ## https://mlr3book.mlr-org.com/chapters/chapter9/preprocessing.html#factor-encoding
@@ -62,6 +59,7 @@ ranger.tuned = mlr3tuning::auto_tuner(
   learner = mlr3tuningspaces::lts(ranger.learner),
   resampling = subtrain.valid.cv,
   measure = mlr3::msr("classif.auc"))
+ranger.tuned$id <- "classif.ranger"
 glmnet.learner <- mlr3learners::LearnerClassifCVGlmnet$new()
 glmnet.learner$predict_type <- "prob"
 rpart.learner <- mlr3::LearnerClassifRpart$new()
@@ -69,7 +67,7 @@ rpart.learner$predict_type <- "prob"
 fless.learner <- mlr3::LearnerClassifFeatureless$new()
 fless.learner$predict_type <- "prob"
 (learner.list <- list(
-  ranger.tuned, xgboost.pipeline, knn.tuned,
+  ranger.tuned, xgboost.tuned, knn.tuned,
   glmnet.learner, rpart.learner, fless.learner))
 (reg.bench.grid <- mlr3::benchmark_grid(
   task.list,
