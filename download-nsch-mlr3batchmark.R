@@ -98,10 +98,11 @@ jobs.after <- batchtools::getJobTable(
   reg=reg
 )[, `:=`(
   learner_id = sapply(algo.pars, function(dt)dt[["learner_id"]]),
-  task_id = sapply(algo.pars, function(dt)dt[["task_id"]])
+  task_id = sapply(prob.pars, function(dt)dt[["task_id"]])
 )][]
 table(jobs.after$error)
 jobs.after[!is.na(error), .(error, task_id, learner_id)]
+jobs.after[!is.na(done), .(time.running, task_id, learner_id)]
 ids <- jobs.after[!is.na(done) & is.na(error), job.id]
 ignore.learner <- function(L){
   L$learner_state$model <- NULL
