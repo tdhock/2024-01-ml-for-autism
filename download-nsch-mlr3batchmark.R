@@ -26,8 +26,8 @@ subtrain.valid.cv$param_set$values$folds <- 5
 same_other_cv <- mlr3resampling::ResamplingSameOtherCV$new()
 same_other_cv$param_set$values$folds <- 10
 knn.learner <- mlr3learners::LearnerClassifKKNN$new()
-knn.learner$predict_type <- "prob"
 knn.learner$param_set$values$k <- paradox::to_tune(1, 20)
+knn.learner$predict_type <- "prob"
 knn.tuned = mlr3tuning::auto_tuner(
   tuner = mlr3tuning::TunerGridSearch$new(),
   learner = knn.learner,
@@ -35,11 +35,11 @@ knn.tuned = mlr3tuning::auto_tuner(
   measure = mlr3::msr("classif.auc"))
 knn.tuned$id <- "classif.nearest_neighbors"
 xgboost.learner <- mlr3learners::LearnerClassifXgboost$new()
-xgboost.learner$predict_type <- "prob"
 xgboost.learner$param_set$values$eta <- paradox::to_tune(0.001, 1, log=TRUE)
 xgboost.learner$param_set$values$nrounds <- paradox::to_tune(1, 100)
 grid.search.5 <- mlr3tuning::TunerGridSearch$new()
 grid.search.5$param_set$values$resolution <- 5
+xgboost.learner$predict_type <- "prob"
 xgboost.tuned = mlr3tuning::auto_tuner(
   tuner = grid.search.5,
   learner = xgboost.learner,
@@ -52,23 +52,25 @@ if(FALSE){
   xgboost.tuned$train(task.list[[1]])
   xgboost.pipeline$train(task.list[[1]])
 }
-ranger.learner <- mlr3learners::LearnerClassifRanger$new()
-ranger.learner$predict_type <- "prob"
-ranger.tuned = mlr3tuning::auto_tuner(
-  tuner = grid.search.5,
-  learner = mlr3tuningspaces::lts(ranger.learner),
-  resampling = subtrain.valid.cv,
-  measure = mlr3::msr("classif.auc"))
-ranger.tuned$id <- "classif.ranger"
+if(FALSE){#ranger is computationally intensive
+  ranger.learner <- mlr3learners::LearnerClassifRanger$new()
+  ranger.learner$predict_type <- "prob"
+  ranger.tuned = mlr3tuning::auto_tuner(
+    tuner = grid.search.5,
+    learner = mlr3tuningspaces::lts(ranger.learner),
+    resampling = subtrain.valid.cv,
+    measure = mlr3::msr("classif.auc"))
+  ranger.tuned$id <- "classif.ranger"
+}
 glmnet.learner <- mlr3learners::LearnerClassifCVGlmnet$new()
-glmnet.learner$predict_type <- "prob"
 rpart.learner <- mlr3::LearnerClassifRpart$new()
-rpart.learner$predict_type <- "prob"
 fless.learner <- mlr3::LearnerClassifFeatureless$new()
-fless.learner$predict_type <- "prob"
 (learner.list <- list(
-  ranger.tuned, xgboost.tuned, knn.tuned,
+  xgboost.tuned, knn.tuned,
   glmnet.learner, rpart.learner, fless.learner))
+for(learner.i in seq_along(learner.list)){
+  learner.list[[learner.i]]$predict_type <- "prob"
+}
 (reg.bench.grid <- mlr3::benchmark_grid(
   task.list,
   learner.list,
@@ -86,12 +88,15 @@ mlr3batchmark::batchmark(
 (job.table <- batchtools::getJobTable(reg=reg))
 chunks <- data.frame(job.table, chunk=1)
 batchtools::submitJobs(chunks, resources=list(
-  walltime = 24*60*60,#seconds
-  memory = 64000,#megabytes per cpu
+  walltime = 4*60*60,#seconds
+  memory = 8000,#megabytes per cpu
   ncpus=1,  #>1 for multicore/parallel jobs.
   ntasks=1, #>1 for MPI jobs.
   chunks.as.arrayjobs=TRUE), reg=reg)
 
+reg.obj <- readRDS(file.path(reg.dir, "registry.rds"))
+sacct.arg <- reg.obj$status[1, paste0("-j", sub("_.*", "", batch.id))]
+sacct.dt <- slurm::sacct(sacct.arg)
 reg=batchtools::loadRegistry(reg.dir)
 print(batchtools::getStatus(reg=reg))
 jobs.after <- batchtools::getJobTable(
@@ -100,6 +105,11 @@ jobs.after <- batchtools::getJobTable(
   learner_id = sapply(algo.pars, function(dt)dt[["learner_id"]]),
   task_id = sapply(prob.pars, function(dt)dt[["task_id"]])
 )][]
+usage.long <- jobs.after[sacct.dt, .(hours, megabytes, learner_id, task_id), on=.(job.id=task)][is.finite(megabytes)][order(megabytes)]
+usage.wide <- dcast(usage.long, learner_id + task_id ~ ., list(min, median, max, length), value.var=c("hours", "megabytes"))
+options(width=150)
+usage.wide[order(megabytes_max), .(learner_id, task_id, megabytes_min, megabytes_median, megabytes_max, megabytes_length)]
+usage.wide[order(hours_max), .(learner_id, task_id, hours_min, hours_median, hours_max, hours_length)]
 table(jobs.after$error)
 jobs.after[!is.na(error), .(error, task_id, learner_id)]
 jobs.after[!is.na(done), .(time.running, task_id, learner_id)]
