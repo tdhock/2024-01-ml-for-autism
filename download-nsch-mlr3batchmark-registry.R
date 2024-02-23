@@ -134,3 +134,45 @@ gg <- ggplot()+
 png("download-nsch-mlr3batchmark-registry-one-set-all-features-auc.png", width=8, height=2, units="in", res=100)
 print(gg)
 dev.off()
+
+## feature importance
+score.glmnet <- score.dt[algorithm%in%c("cv_glmnet","featureless") & survey_year==2020 & train.groups=="same"]
+(stats.glmnet <- dcast(
+  score.glmnet,
+  algorithm + task_id ~ .,
+  list(mean, sd, length),
+  value.var=c("percent.accuracy", "classif.auc")
+)[order(percent.accuracy_mean)])
+levs <- stats.glmnet[algorithm=="cv_glmnet", task_id]
+score.glmnet[, Features := factor(task_id, levs)]
+stats.glmnet[, Features := factor(task_id, levs)]
+ggplot()+
+  geom_point(aes(
+    percent.accuracy, Features, color=algorithm),
+    shape=1,
+    data=score.glmnet)
+gg <- ggplot()+
+  ggtitle("Survey year 2020, train on feature subsets,\nsummary of 10 cross-validation folds")+
+  geom_segment(aes(
+    percent.accuracy_mean+percent.accuracy_sd, Features,
+    color=algorithm,
+    xend=percent.accuracy_mean-percent.accuracy_sd, yend=Features),
+    data=stats.glmnet)+
+  geom_point(aes(
+    percent.accuracy_mean, Features,
+    color=algorithm),
+    shape=1,
+    data=stats.glmnet)+
+  geom_text(aes(
+    percent.accuracy_mean, Features,
+    color=algorithm,
+    label=sprintf("%.2f±%.2f", percent.accuracy_mean, percent.accuracy_sd)),
+    vjust=1.5,
+    hjust=0,
+    data=stats.glmnet[algorithm=="cv_glmnet"])+
+  scale_x_continuous(
+    "Percent correctly predicted labels in test set, mean±SD over 10 train/test splits",
+    breaks=seq(96, 98, by=0.1))
+png("download-nsch-mlr3batchmark-registry-one-set-compare-features.png", width=8, height=4, units="in", res=100)
+print(gg)
+dev.off()

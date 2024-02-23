@@ -106,6 +106,7 @@ jobs.after <- batchtools::getJobTable(
   task_id = sapply(prob.pars, function(dt)dt[["task_id"]])
 )][]
 usage.long <- jobs.after[sacct.dt, .(hours, megabytes, learner_id, task_id), on=.(job.id=task)][is.finite(megabytes)][order(megabytes)]
+sum(usage.long$hours)/4
 usage.wide <- dcast(usage.long, learner_id + task_id ~ ., list(min, median, max, length), value.var=c("hours", "megabytes"))
 options(width=150)
 usage.wide[order(megabytes_max), .(learner_id, task_id, megabytes_min, megabytes_median, megabytes_max, megabytes_length)]

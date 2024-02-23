@@ -76,6 +76,18 @@
 Looks like ranger is by far the slowest and more memory intensive, so
 for now I will omit that.
 
+Below we see that total time for CV experiment with 2700 iterations is
+240 hours, so since we did this in a 4 hour time limit, this is about
+60x speedup.
+
+#+BEGIN_SRC R
+2700: 3.194722222  1810.023 classif.nearest_neighbors     all.364
+> sum(usage.long$hours)
+[1] 240.7103
+> sum(usage.long$hours)/4
+[1] 60.17757
+#+END_SRC
+
 ** 22 Feb 2024
 
 [[file:download-nsch-convert-do.R]] makes [[file:download-nsch-convert-do-2019-2020.csv]]
