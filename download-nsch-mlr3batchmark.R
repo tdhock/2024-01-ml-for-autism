@@ -88,7 +88,7 @@ mlr3batchmark::batchmark(
 (job.table <- batchtools::getJobTable(reg=reg))
 chunks <- data.frame(job.table, chunk=1)
 batchtools::submitJobs(chunks, resources=list(
-  walltime = 4*60*60,#seconds
+  walltime = 6*60*60,#seconds
   memory = 8000,#megabytes per cpu
   ncpus=1,  #>1 for multicore/parallel jobs.
   ntasks=1, #>1 for MPI jobs.
@@ -115,13 +115,16 @@ table(jobs.after$error)
 jobs.after[!is.na(error), .(error, task_id, learner_id)]
 jobs.after[!is.na(done), .(time.running, task_id, learner_id)]
 ids <- jobs.after[!is.na(done) & is.na(error), job.id]
-ignore.learner <- function(L){
-  L$learner_state$model <- NULL
+only.keep.glmnet.coef <- function(L){
+  m <- L$learner_state$model
+  L$learner_state$model <- if(inherits(m, "cv.glmnet")){
+    print(coef(m))
+  }
   L
 }
 if(FALSE){#https://github.com/mlr-org/mlr3batchmark/pull/29
   remotes::install_github("tdhock/mlr3batchmark@reduceResultsList.fun")
 }
-bmr = mlr3batchmark::reduceResultsBatchmark(ids, reg = reg, store_backends = FALSE, reduceResultsList.fun=ignore.learner)
+bmr = mlr3batchmark::reduceResultsBatchmark(ids, reg = reg, store_backends = FALSE, reduceResultsList.fun=only.keep.glmnet.coef)
 out.RData <- paste0(reg.dir, ".RData")
 save(bmr, file=out.RData)

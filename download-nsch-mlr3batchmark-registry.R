@@ -1,4 +1,5 @@
 library(ggplot2)
+library(glmnet)
 library(data.table)
 (objs <- load("download-nsch-mlr3batchmark-registry.RData"))
 msr.list <- mlr3::msrs(c("classif.auc", "classif.acc"))
@@ -176,3 +177,60 @@ gg <- ggplot()+
 png("download-nsch-mlr3batchmark-registry-one-set-compare-features.png", width=8, height=4, units="in", res=100)
 print(gg)
 dev.off()
+
+## TODO after new reduce 
+only.glmnet <- score.glmnet[task_id=="all.364" & algorithm=="cv_glmnet"]
+weight.dt.list <- list()
+for(score.i in 1:nrow(only.glmnet)){
+  score.row <- only.glmnet[score.i]
+  fit <- score.row$learner[[1]]$model
+  weight.mat <- coef(fit)[-1,]
+  weight.dt.list[[score.i]] <- score.row[, .(
+    test.fold, seed, train_min_size,
+    weight=as.numeric(weight.mat),
+    variable=factor(names(weight.mat), levs))]
+}
+(weight.dt <- rbindlist(weight.dt.list))
+
+## train on one year, predict on another.
+score.all <- score.dt[task_id=="all.364" & algorithm%in%c("featureless","cv_glmnet")]
+ggplot()+
+  geom_point(aes(
+    percent.accuracy, train.groups,
+    color=algorithm),
+    shape=1,
+    data=score.all)+
+  facet_grid(. ~ test.group, labeller=label_both, scales="free")
+(stats.all <- dcast(
+  score.all,
+  algorithm + train.groups + test.group ~ .,
+  list(mean, sd, length),
+  value.var=c("percent.accuracy", "classif.auc")
+)[order(percent.accuracy_mean)])
+gg <- ggplot()+
+  ggtitle("Fix test group, train on same/other/all, summary of 10 cross-validation folds")+
+  facet_grid(. ~ test.group, labeller=label_both, scales="free")+
+  geom_segment(aes(
+    percent.accuracy_mean+percent.accuracy_sd, train.groups,
+    color=algorithm,
+    xend=percent.accuracy_mean-percent.accuracy_sd, yend=train.groups),
+    data=stats.all)+
+  geom_point(aes(
+    percent.accuracy_mean, train.groups,
+    color=algorithm),
+    shape=1,
+    data=stats.all)+
+  geom_text(aes(
+    percent.accuracy_mean, train.groups,
+    color=algorithm,
+    hjust=ifelse(algorithm=="featureless", 0, 0.5),
+    label=sprintf("%.2f±%.2f", percent.accuracy_mean, percent.accuracy_sd)),
+    vjust=1.5,
+    data=stats.all)+
+  scale_x_continuous(
+    "Percent correctly predicted labels in test set, mean±SD over 10 train/test splits",
+    breaks=seq(96, 98, by=0.2))
+png("download-nsch-mlr3batchmark-registry-predict-new-year.png", width=8, height=2, units="in", res=100)
+print(gg)
+dev.off()
+
