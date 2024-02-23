@@ -62,11 +62,15 @@ ranger.tuned = mlr3tuning::auto_tuner(
   learner = mlr3tuningspaces::lts(ranger.learner),
   resampling = subtrain.valid.cv,
   measure = mlr3::msr("classif.auc"))
+glmnet.learner <- mlr3learners::LearnerClassifCVGlmnet$new()
+glmnet.learner$predict_type <- "prob"
+rpart.learner <- mlr3::LearnerClassifRpart$new()
+rpart.learner$predict_type <- "prob"
+fless.learner <- mlr3::LearnerClassifFeatureless$new()
+fless.learner$predict_type <- "prob"
 (learner.list <- list(
   ranger.tuned, xgboost.pipeline, knn.tuned,
-  mlr3learners::LearnerClassifCVGlmnet$new(),
-  mlr3::LearnerClassifRpart$new(),
-  mlr3::LearnerClassifFeatureless$new()))
+  glmnet.learner, rpart.learner, fless.learner))
 (reg.bench.grid <- mlr3::benchmark_grid(
   task.list,
   learner.list,
@@ -92,9 +96,13 @@ batchtools::submitJobs(chunks, resources=list(
 
 reg=batchtools::loadRegistry(reg.dir)
 print(batchtools::getStatus(reg=reg))
-jobs.after <- batchtools::getJobTable(reg=reg)
+jobs.after <- batchtools::getJobTable(
+  reg=reg
+)[, `:=`(
+  learner_id = sapply(algo.pars, function(dt)dt[["learner_id"]]),
+  task_id = sapply(algo.pars, function(dt)dt[["task_id"]])
+)][]
 table(jobs.after$error)
-jobs.after[, learner_id := sapply(algo.pars, function(dt)dt[["learner_id"]]) ]
 jobs.after[!is.na(error), .(error, task_id, learner_id)]
 ids <- jobs.after[!is.na(done) & is.na(error), job.id]
 ignore.learner <- function(L){
