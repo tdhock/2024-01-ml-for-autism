@@ -183,14 +183,53 @@ only.glmnet <- score.glmnet[task_id=="all.364" & algorithm=="cv_glmnet"]
 weight.dt.list <- list()
 for(score.i in 1:nrow(only.glmnet)){
   score.row <- only.glmnet[score.i]
-  fit <- score.row$learner[[1]]$model
-  weight.mat <- coef(fit)[-1,]
+  weight.mat <- score.row$learner[[1]]$model[-1,]
   weight.dt.list[[score.i]] <- score.row[, .(
-    test.fold, seed, train_min_size,
+    test.fold, 
     weight=as.numeric(weight.mat),
-    variable=factor(names(weight.mat), levs))]
+    variable=names(weight.mat))]
 }
-(weight.dt <- rbindlist(weight.dt.list))
+(weight.dt <- rbindlist(
+  weight.dt.list
+)[, `:=`(
+  folds.not.zero = sum(weight!=0),
+  abs.mean.weight=abs(mean(weight))
+), by=variable][order(-abs.mean.weight)])
+levs <- unique(weight.dt$variable)
+weight.dt[, Variable := factor(variable, levs)]
+weight.non.zero <- weight.dt[weight!=0]
+gg <- ggplot()+
+  theme_bw()+
+  facet_grid(folds.not.zero ~ ., scales="free", space="free")+
+  geom_vline(xintercept=0, color="grey50")+
+  geom_point(aes(
+    weight, Variable),
+    shape=1,
+    data=weight.non.zero)+
+  scale_x_continuous("Linear model coefficient (feature weight)")
+png("download-nsch-mlr3batchmark-registry-glmnet-coef.png", width=10, height=15, units="in", res=100)
+print(gg)
+dev.off()
+
+weight.all <- weight.non.zero[
+  folds.not.zero==max(folds.not.zero)
+][
+, Variable_short := substr(variable, 1, 30)
+][
+, Variable_Short := factor(Variable_short, unique(Variable_short))
+]
+gg <- ggplot()+
+  ggtitle("Linear model cv_glmnet coefficients which were non-zero in all cross-validation folds")+
+  theme_bw()+
+  geom_vline(xintercept=0, color="grey50")+
+  scale_x_continuous("Linear model coefficient (feature weight)")+
+  geom_point(aes(
+    weight, Variable_Short),
+    shape=1,
+    data=weight.all)
+png("download-nsch-mlr3batchmark-registry-glmnet-coef-all.png", width=11, height=4, units="in", res=100)
+print(gg)
+dev.off()
 
 ## train on one year, predict on another.
 score.all <- score.dt[task_id=="all.364" & algorithm%in%c("featureless","cv_glmnet")]
