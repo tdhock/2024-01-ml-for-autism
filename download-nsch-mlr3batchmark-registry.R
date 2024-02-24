@@ -50,7 +50,7 @@ gg <- ggplot()+
   scale_x_continuous(
     "Percent correctly predicted labels in test set, mean±SD over 10 train/test splits",
     breaks=seq(96, 98, by=0.1))
-png("download-nsch-mlr3batchmark-registry-one-set-all-features-stats.png", width=8, height=2, units="in", res=100)
+png("download-nsch-mlr3batchmark-registry-one-set-all-features-stats.png", width=9, height=2.5, units="in", res=100)
 print(gg)
 dev.off()
 
@@ -132,7 +132,7 @@ gg <- ggplot()+
     data=stats.some)+
   scale_x_continuous(
     "Area Under the test set ROC Curve, mean±SD over 10 train/test splits")
-png("download-nsch-mlr3batchmark-registry-one-set-all-features-auc.png", width=8, height=2, units="in", res=100)
+png("download-nsch-mlr3batchmark-registry-one-set-all-features-auc.png", width=8, height=2.5, units="in", res=100)
 print(gg)
 dev.off()
 
