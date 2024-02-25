@@ -154,5 +154,5 @@ common.names <- Reduce(intersect, sapply(out.dt.list, names))
 out.dt <- rbindlist(lapply(out.dt.list, function(DT)DT[, common.names,with=FALSE]))
 out.dt[, table(survey_year, Autism)]
 sum(is.na(out.dt))
-fwrite(data.table(column_name=names(out.dt), category=""), "download-nsch-convert-do-2019-2020-366cols-categories.csv")
+##fwrite(data.table(column_name=names(out.dt), category=""), "download-nsch-convert-do-2019-2020-366cols-categories.csv")
 fwrite(out.dt, "download-nsch-convert-do-2019-2020-366cols.csv")

@@ -1,3 +1,18 @@
+** 26 Feb 2024
+
+[[file:HOCKING-slides-2024-02-26-ml-for-autism.tex]] makes
+[[file:HOCKING-slides-2024-02-26-ml-for-autism.pdf]] slides
+with new drawings
+
+[[file:drawing-cv-feature-sets.svg]] makes
+[[file:drawing-cv-feature-sets.pdf]]
+
+[[file:drawing-cv-same-other-years.svg]] makes
+[[file:drawing-cv-same-other-years-1.pdf]]
+[[file:drawing-cv-same-other-years-2.pdf]]
+[[file:drawing-cv-same-other-years-3.pdf]]
+[[file:drawing-cv-same-other-years-4.pdf]]
+
 ** 23 Feb 2024
 
 [[file:download-nsch-mlr3batchmark.R]] launches jobs, here is a preliminary analysis of how much time and memory they take:
