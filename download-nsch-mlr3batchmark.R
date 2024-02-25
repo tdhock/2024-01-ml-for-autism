@@ -1,5 +1,6 @@
 library(data.table)
 category366 <- fread("download-nsch-convert-do-2019-2020-366cols-categories.csv")
+options(width=50)
 table(category366$category)
 input.meta.dt <- category366[category!=""]
 feature.names.list <- with(input.meta.dt, split(column_name, category))

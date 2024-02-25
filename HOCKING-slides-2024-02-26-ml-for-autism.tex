@@ -62,7 +62,7 @@
   \item \textbf{Data pre-processing}: operations prior to machine
     learning.
   \item \textbf{Prediction accuracy in a given year}: can we predict
-    this response (output/label/dependent), given the others?
+    Autism variable (output/label/dependent), given the others?
     (inputs/features/independent)
   \item \textbf{Model interpretation / feature selection}: which
     inputs are most useful for prediction?
@@ -76,25 +76,69 @@
 \begin{frame}
   \frametitle{Data pre-processing}
 
+  \begin{itemize}
+  \item Download NSCH data from public Census web site.
+  \item For each year, keep all columns with less than
+    10\% missing values, then remove all rows with at least one missing value.
+  \item One-hot recoding of categorical variables (create 0/1
+    dummy/indicator variable for each value).
+  \item Then keep only columns in common between both years: result is
+    46,010 rows and 366 columns. Details:
+  \end{itemize}
+
   \scriptsize
   
   \input{download-nsch-convert-do-compare.tex} 
+
+Data source:
+
+\url{http://www2.census.gov/programs-surveys/nsch/datasets/2019/nsch_2019_topical_Stata.zip} nsch\_2019\_topical.dta, nsch\_2019\_topical.do
+
+\url{http://www2.census.gov/programs-surveys/nsch/datasets/2020/nsch_2020_topical_Stata.zip} nsch\_2020\_topical.dta, nsch\_2020\_topical.do
+
 \end{frame} 
+
+\begin{frame}[fragile]
+  \frametitle{One-hot encoding of categorical variables}
+
+Sometimes called dummy/indicator variables in statistics. 
+
+For each value, we create a new column with 0/1 values.
+
+For example, from \verb|nsch_2020_topical.do|
+\begin{verbatim}
+label var k4q24_r  "Specialist Visit"
+label define k4q24_r_lab  1  "Yes"
+label define k4q24_r_lab  2  "No, but this child needed 
+ to see a specialist", add
+label define k4q24_r_lab  3  "No, this child did not 
+ need to see a specialist", add
+\end{verbatim}
+code above means there is a column named \verb|k4q24_r| in \verb|nsch_2020_topical.dta|, with values 1, 2, 3.
+
+In our analysis we use a one-hot encoding, which means deleting that
+column, and creating two 0/1 columns:
+
+\small
+\verb|Specialist Visit=Yes| and
+\verb|Specialist Visit=No, but this child needed to see a specialist|
+
+\end{frame}
 
 \section{Prediction accuracy in a given year}
 
 \begin{frame}
-  \frametitle{Cross-validation}
+  \frametitle{K-fold cross-validation: a standard algorithm used to estimate the prediction accuracy in machine learning}
   \includegraphics[width=\textwidth]{drawing-cross-validation.pdf}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Cross-validation}
+  \frametitle{10-fold cross-validation for comparing learning algorithms}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features.png}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Cross-validation}
+  \frametitle{Summarize 10 folds with mean and standard deviation}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features-stats.png}
 \end{frame}
 
@@ -157,28 +201,54 @@
 
 \section{Model interpretation / feature selection}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Column categorization}
-  TODO
+Each input/feature column was assigned a category.
+\begin{verbatim}
+column_name,category
+survey_year,
+Autism,
+State FIPS Code=Alabama,state
+...
+Number of Children in Household=1,home
+...
+Sex of Selected Child=Male,birth
+...
+Deafness=Yes,comorbidity
+...
+               behavior       birth comorbidity 
+          2          15          24          30 
+    culture  healthcare        home       state 
+         14          88         130          50 
+     wealth 
+         13 
+\end{verbatim}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Cross-validation for feature importance}
+  \frametitle{Cross-validation for category importance}
   \includegraphics[width=\textwidth]{drawing-cv-feature-sets.pdf}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Cross-validation for feature importance}
+  \frametitle{Cross-validation for category importance}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-compare-features.png}
+
+TODO equation
+
+  \begin{itemize}
+  \item Positive coefficients mean larger values of that feature are
+    more likely to TODO
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Cross-validation for feature importance}
+  \frametitle{Linear model coefficient / feature importance}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-glmnet-coef-all.png}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Cross-validation for feature importance}
+  \frametitle{Linear model coefficient / feature importance}
   \includegraphics[height=0.7\textheight]{download-nsch-mlr3batchmark-registry-glmnet-coef.png}
 
   View full figure online, \url{https://github.com/tdhock/2024-01-ml-for-autism/blob/main/download-nsch-mlr3batchmark-registry-glmnet-coef.png}

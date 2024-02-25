@@ -151,7 +151,7 @@ for(year.do in year.do.some){
   year.out <- year.keep[, data.table(
     survey_year, Autism, X.mat)]
   out.dt.list[[year.dta]] <- year.out
-  get_meta <- function(data.type, dt){
+  get_meta <- function(data.type, dt, question.vec){
     na.dt <- is.na(dt)
     is.autism <- if(data.type=="raw"){
       dt[["k2q35a"]]==1
@@ -162,15 +162,17 @@ for(year.do in year.do.some){
       data.type,
       nrow=nrow(dt),
       ncol=ncol(dt),
-      stop("TODO how many columns before one hot")
+      questions=length(question.vec),
       "%Autism"=100*mean(is.autism, na.rm=TRUE),
       "%rowsNA"=100*mean(apply(na.dt, 1, any)),
       "%colsNA"=100*mean(apply(na.dt, 2, any)))
   }
   print(compare.dt.list[[year.dta]] <- data.table(
     year.out[1, .(year=survey_year)], rbind(
-      get_meta("raw", year.tib),
-      get_meta("processed", year.out))))
+      get_meta("raw", year.tib, names(year.tib)),
+      get_meta("processed", year.out, unique(sub("=.*", "", names(year.out))))
+    )
+  ))
 }
 (compare.dt <- rbindlist(compare.dt.list))
 
@@ -183,5 +185,20 @@ out.dt <- rbindlist(lapply(out.dt.list, function(DT)DT[, common.names,with=FALSE
 out.dt[, table(survey_year, Autism)]
 sum(is.na(out.dt))
 out.dt[, table(survey_year)]
+grep("Parental Nativity|Specialist Visit", names(year.out), value=TRUE)
+year.tib
+grep("Specialist Visit", names(year.out), value=TRUE)
+var.dt[desc=="Specialist Visit"]
+table(year.tib[["k4q24_r"]])
+define.dt[variable=="k4q24_r"]
+## label var k4q24_r  "Specialist Visit"
+## label define k4q24_r_lab  1  "Yes"
+## label define k4q24_r_lab  2  "No, but this child needed to see a specialist", add
+
+## label define k4q24_r_lab  3  "No, this child did not need to see a specialist", add
+## label define k4q24_r_lab  .m "No valid response", add
+## label define k4q24_r_lab  .n "Not in universe", add
+## label define k4q24_r_lab  .l "Logical skip", add
+## label define k4q24_r_lab  .d "Suppressed for confidentiality", add
 ##fwrite(data.table(column_name=names(out.dt), category=""), "download-nsch-convert-do-2019-2020-366cols-categories.csv")
 fwrite(out.dt, "download-nsch-convert-do-2019-2020-366cols.csv")
