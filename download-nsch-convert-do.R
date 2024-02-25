@@ -10,6 +10,7 @@ data.dir <- "download-nsch-data"
 (year.do.vec <- Sys.glob(file.path(data.dir, "*.do")))
 year.do.some <- grep("2019|2020", year.do.vec, value=TRUE)
 out.dt.list <- list()
+compare.dt.list <- list()
 for(year.do in year.do.some){
   year.dta <- sub("do$", "dta", year.do)
   year.tib <- haven::read_dta(year.dta)
@@ -147,12 +148,40 @@ for(year.do in year.do.some){
       print(weight.mat[as.logical(weight.mat!=0),])
     }
   }
-  out.dt.list[[year.dta]] <- year.keep[, data.table(
+  year.out <- year.keep[, data.table(
     survey_year, Autism, X.mat)]
+  out.dt.list[[year.dta]] <- year.out
+  get_meta <- function(data.type, dt){
+    na.dt <- is.na(dt)
+    is.autism <- if(data.type=="raw"){
+      dt[["k2q35a"]]==1
+    }else{
+      dt[["Autism"]]=="Yes"
+    }
+    data.table(
+      data.type,
+      nrow=nrow(dt),
+      ncol=ncol(dt),
+      stop("TODO how many columns before one hot")
+      "%Autism"=100*mean(is.autism, na.rm=TRUE),
+      "%rowsNA"=100*mean(apply(na.dt, 1, any)),
+      "%colsNA"=100*mean(apply(na.dt, 2, any)))
+  }
+  print(compare.dt.list[[year.dta]] <- data.table(
+    year.out[1, .(year=survey_year)], rbind(
+      get_meta("raw", year.tib),
+      get_meta("processed", year.out))))
 }
+(compare.dt <- rbindlist(compare.dt.list))
+
+fwrite(compare.dt, "download-nsch-convert-do-compare.csv")
+library(xtable)
+xt <- xtable(compare.dt, digits=4)
+print(xt, type="latex", file="download-nsch-convert-do-compare.tex", include.rownames=FALSE, floating=FALSE)
 common.names <- Reduce(intersect, sapply(out.dt.list, names))
 out.dt <- rbindlist(lapply(out.dt.list, function(DT)DT[, common.names,with=FALSE]))
 out.dt[, table(survey_year, Autism)]
 sum(is.na(out.dt))
+out.dt[, table(survey_year)]
 ##fwrite(data.table(column_name=names(out.dt), category=""), "download-nsch-convert-do-2019-2020-366cols-categories.csv")
 fwrite(out.dt, "download-nsch-convert-do-2019-2020-366cols.csv")

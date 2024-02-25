@@ -75,8 +75,11 @@
 
 \begin{frame}
   \frametitle{Data pre-processing}
-  TODO
-\end{frame}
+
+  \scriptsize
+  
+  \input{download-nsch-convert-do-compare.tex} 
+\end{frame} 
 
 \section{Prediction accuracy in a given year}
 
@@ -134,7 +137,17 @@
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features-roc-zoom.png}
 
   Relatively small FPR because there are so few positive labels
-  (Autism=Yes TODO number in 2020).
+  (Autism=Yes only 3\% of 27808 rows in 2020).
+% > out.dt[, table(survey_year, Autism)]
+%            Autism
+% survey_year   Yes    No
+%        2019   546 17656
+%        2020   857 26951  
+% > c2020=c(857, 26951)
+% > c2020/sum(c2020)
+% [1] 0.03081847 0.96918153
+% > sum(c2020)
+% [1] 27808
 \end{frame}
 
 \begin{frame}
@@ -143,6 +156,11 @@
 \end{frame}
 
 \section{Model interpretation / feature selection}
+
+\begin{frame}
+  \frametitle{Column categorization}
+  TODO
+\end{frame}
 
 \begin{frame}
   \frametitle{Cross-validation for feature importance}
@@ -191,6 +209,13 @@
 \begin{frame}
   \frametitle{Cross-validation for determining similarity between years}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-predict-new-year.png}
+  \begin{itemize}
+  \item 18,202 rows in 2019, whereas 27,808 in 2020.
+  \end{itemize}
+% > out.dt[, table(survey_year)]
+% survey_year
+%  2019  2020 
+% 18202 27808 
 \end{frame}
 
 \section{Discussion and Conclusions}
