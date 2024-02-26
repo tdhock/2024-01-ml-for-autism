@@ -40,7 +40,7 @@
 
 \begin{document}
 
-\title{Interpretable machine learning algorithms for understanding factors related to childhood autism}
+\title{A tutorial on interpretable machine learning algorithms for understanding factors related to childhood autism}
 
 \author{
   Toby Dylan Hocking\\
@@ -53,7 +53,7 @@
 \begin{frame}
   \frametitle{Motivation and data for predicting childhood autism}
   \begin{itemize}
-  \item We have data from the National Survey of Children's Health.
+  \item We have National Survey of Children's Health data (NSCH).
   \item Each year a number of people fill out the survey (rows), and
     we have data for their responses (columns).
 %download-nsch-data/nsch_2018_topical.do:292:label var k2q35a  "Autism ASD"
@@ -71,12 +71,29 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Machine learning overview and citation}
+  \begin{itemize}
+  \item In supervised machine learning, train data are paired inputs
+    $x$ (images below; survey questions for NSCH) and outputs $y$
+    (integer class); goal is accurate prediction on test data.
+  \item Hocking TD. Chapter \emph{Introduction to machine learning and neural
+    networks} for book \emph{Land Carbon Cycle Modeling: Matrix Approach,
+    Data Assimilation, and Ecological Forecasting} edited by Luo Y,
+    published by Taylor and Francis (2022).
+  \end{itemize}
+
+\includegraphics[width=\textwidth]{drawing-mnist-train-test}
+\end{frame}
+
 \section{Data pre-processing}
 
 \begin{frame}
-  \frametitle{Data pre-processing}
+  \frametitle{Data pre-processing overview}
 
   \begin{itemize}
+  \item Goal: for machine learning, need a CSV table with
+    rows for people, columns for survey questions.
   \item Download NSCH data from public Census web site.
   \item For each year, keep all columns with less than
     10\% missing values, then remove all rows with at least one missing value.
@@ -125,6 +142,29 @@ column, and creating two 0/1 columns:
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{R software citations}
+We used the following free/open-source software:
+  \begin{description}
+  \item[Base R system.] R Core Team (2023). R: A Language and
+    Environment for Statistical Computing. R Foundation for
+    Statistical Computing, Vienna, Austria.
+  \item[Reading Stata dta files in R.]
+  Wickham H, Miller E, Smith D (2023). haven: Import and Export
+  'SPSS', 'Stata' and 'SAS' Files. R package version 2.5.4.
+  \item[Data manipulation, reshaping, summarization.]   
+    Barrett T, Dowle M, Srinivasan A, Gorecki J, Chirico M, Hocking T
+    (2024). data.table: Extension of data.frame. R package version
+    1.15.0.
+  \item[Regular expressions for parsing Stata do files in R.] 
+    Hocking TD (2023). nc: Named Capture to Data Tables. R package
+    version 2023.8.24.
+  \item[Data visualization.]
+    H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
+    Springer-Verlag New York, 2016.
+  \end{description}
+\end{frame}
+
 \section{Prediction accuracy in a given year}
 
 \begin{frame}
@@ -142,13 +182,52 @@ column, and creating two 0/1 columns:
   \end{itemize}
 
   \includegraphics[width=\textwidth]{drawing-cross-validation.pdf}
+
+  \small Hocking TD \emph{Intro. to machine learning and neural
+    networks} (2022).
+\end{frame}
+
+\begin{frame}
+  \frametitle{Learning algorithms we consider}
+  We use R packages that implement the following learning
+  algorithms, in the mlr3 R package framework:
+\begin{description}
+\item[cv\_glmnet] L1-regularized linear model (feature
+  selection). Friedman, \emph{et al.} (2010).
+  % Friedman J, Tibshirani R, Hastie T (2010). “Regularization Paths for
+  % Generalized Linear Models via Coordinate Descent.” _Journal of
+  % Statistical Software_, *33*(1), 1-22. doi:10.18637/jss.v033.i01
+  % <https://doi.org/10.18637/jss.v033.i01>.
+\item[xgboost] Extreme gradient boosting (non-linear). Chen and Guestrin (2016). 
+\item[rpart] Recursive partitioning, decision tree (non-linear, feature selection). Therneau and Atkinson (2023).
+  % Therneau T, Atkinson B (2023). _rpart: Recursive Partitioning and
+  % Regression Trees_. R package version 4.1.23,
+  % <https://CRAN.R-project.org/package=rpart>.
+\item[nearest\_neighbors] classic non-linear algorithm, as implemented
+  in kknn R package. Schliep and Hechenbichler (2016).
+  % Schliep K, Hechenbichler K (2016). _kknn: Weighted k-Nearest
+  % Neighbors_. R package version 1.3.1,
+  % <https://CRAN.R-project.org/package=kknn>.
+\item[featureless] un-informed baseline, ignores all inputs/features,
+  and always predicts the most frequent label in train data (Autism=No
+  in our case). Nomenclature from mlr3 R package, Lang, \emph{et al.},
+  (2019).
+  % Lang M, Binder M, Richter J, Schratz P, Pfisterer F, Coors S, Au Q,
+  % Casalicchio G, Kotthoff L, Bischl B (2019). “mlr3: A modern
+  % object-oriented machine learning framework in R.” _Journal of Open
+  % Source Software_. doi:10.21105/joss.01903
+  % <https://doi.org/10.21105/joss.01903>,
+  % <https://joss.theoj.org/papers/10.21105/joss.01903>.
+\end{description}
+Each learning algorithm has different properties (non-linear, feature
+selection, etc). For details see Hastie, {\it et al.} (2009) textbook.
 \end{frame}
 
 \begin{frame}
   \frametitle{10-fold cross-validation for comparing learning algorithms}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features.png}
 
-Learning algorithms we consider:
+  Learning algorithms we consider:
 \begin{description}
 \item[cv\_glmnet] L1-regularized linear model (feature selection).
 \item[xgboost] Extreme gradient boosting (non-linear).
@@ -181,7 +260,7 @@ Learning algorithms we consider:
 \begin{frame}
   \frametitle{Confusion matrix and error rates}
   \begin{tabular}{c|c|c}
-    & Label 0            & Label 1 \\
+    & Label 0/No Autism            & Label 1/Yes Autism \\
     \hline
     Predict 0 & True Negative (TN) & False Negative (FN) \\
     \hline
@@ -197,8 +276,9 @@ Learning algorithms we consider:
   \item Ideal rates are FPR=0 and TPR=1 but that is not possible to
     achieve in most real data.
   \item Receiver Operating Characteristic (ROC) curves trace TPR as a
-    function of FPR, for every threshold of the learned prediction
-    function $f(x)$.
+    function of FPR, for every threshold of the predicted scores
+    $f(x)\in\mathbb R$ (default threshold is typically 0, smaller
+    thresholds result in more positive predictions, etc).
   \end{itemize}
 \end{frame}
 
@@ -232,6 +312,17 @@ Learning algorithms we consider:
 
 \begin{frame}
   \frametitle{Area Under ROC Curve (AUC) quantifies accuracy over all thresholds}
+  \begin{itemize}
+  \item Different learning algorithms result in different FPR/TPR at
+    default prediction threshold, which can make it difficult to
+    fairly compare.
+  \item For example, nearest neighbors always had lower FPR/TPR than other
+    algorithms.
+  \item Is there an algorithm which has a larger TPR, for a given FPR?
+    If so, then it is objectively better.
+  \item An algorithm with larger AUC means more often larger TPR, for
+    a given FPR (averaged over all prediction thresholds).
+  \end{itemize}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features-auc.png}
 \end{frame}
 
@@ -264,27 +355,49 @@ Deafness=Yes,comorbidity
 \begin{frame}
   \frametitle{Cross-validation for category importance}
   \includegraphics[width=\textwidth]{drawing-cv-feature-sets.pdf}
+
+  \begin{itemize}
+  \item Do inputs/questions from home category, or comorbidity
+    category, result in more accurate predictions on the test set?
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Cross-validation for category importance}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-compare-features.png}
 
-TODO equation
-
   \begin{itemize}
-  \item Positive coefficients mean larger values of that feature are
-    more likely to TODO
+  \item None of the categories alone is as accurate as all of the
+    features, which implies that some combination of categories is
+    required for optimal prediction accuracy.
+  \item Co-morbidity is the most accurate single category, and
+    healthcare is second; other categories are not useful at all by
+    themselves for prediction (same as featureless).
   \end{itemize}
+
 \end{frame}
 
 \begin{frame}
   \frametitle{Linear model coefficient / feature importance}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-glmnet-coef-all.png}
+
+  \begin{itemize}
+  \item Linear model is
+    $\text{Likelihood of autism} = f(x) = \sum_{j=1}^D x_j \beta_j$
+    where $x_j$ is input $j$ and $\beta_j$ is the learned weight/coefficient.
+  \item For example, above likelihood is 1.4(Cerebral Palsy) + 1.3(Down Syndrome) - 1.1(Developmental Delay)+ ...
+  \item Positive weight/coefficient $\beta_j$ means that feature
+    contributes to probability of autism=Yes, negative means
+    autism=No.
+  \item Above we show only most important features, with non-zero
+    weights/coefficients in all 10 cross-validation folds (sorted by
+    absolute mean weight/coefficient).
+  \end{itemize}
+
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linear model coefficient / feature importance}
+  \frametitle{Full figure, variables selected in any number of CV folds}
   \includegraphics[height=0.7\textheight]{download-nsch-mlr3batchmark-registry-glmnet-coef.png}
 
   View full figure online, \url{https://github.com/tdhock/2024-01-ml-for-autism/blob/main/download-nsch-mlr3batchmark-registry-glmnet-coef.png}
@@ -317,6 +430,13 @@ TODO equation
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-predict-new-year.png}
   \begin{itemize}
   \item 18,202 rows in 2019, whereas 27,808 in 2020.
+  \item For predicting in 2019 (left), training on only 2019 (same) is
+    slightly less accurate than training on only 2020 (other), and
+    2019+2020 (all). This suggests 2020 data are consistent with the
+    pattern in 2019, which is too complex to learn from the limited
+    2019 data alone (there is a slight advantage to combining years
+    when training).
+  \item For predicting in 2020 (right), training on 2019 (other) is slightly less accurate than training on 2020 (same), and 2019+2020 (all). This again suggests that 2019/2020 data are consistent, but there are not enough data in 2019 alone.
   \end{itemize}
 % > out.dt[, table(survey_year)]
 % survey_year
@@ -329,17 +449,15 @@ TODO equation
 \begin{frame}
   \frametitle{Discussion and Conclusions}
   \begin{itemize}
-  \item Often we want to know if we have similar or different patterns
-    in different groups (train on one year, predict
-    on another).
-  \item Cross-validation can be used to determine the extent to which
-    we can train on one group, and accurately predict on another.
+  \item Cross-validation can be used to determine which learning
+    algorithms, and features, are most accurate.
   \item Machine learning algorithms like L1 regularized linear models
-    (LASSO/cv\_glmnet) are additionally interpretable in terms of which features
-    are used for prediction (can be compared between models trained on
-    different groups).
+    (LASSO/cv\_glmnet) are additionally interpretable in terms of
+    which features are used for prediction.
   \item Free/open-source software available: mlr3resampling R package
-    on CRAN and \url{https://github.com/tdhock/mlr3resampling}
+    on CRAN and \url{https://github.com/tdhock/mlr3resampling},
+    cross-validation for train on one year, predict on another.
+\item These slides are reproducible, using the code in \url{https://github.com/tdhock/2024-01-ml-for-autism}
   \item Let's collaborate! Contact: toby.hocking@nau.edu,
     toby.hocking@r-project.org
   \end{itemize}
