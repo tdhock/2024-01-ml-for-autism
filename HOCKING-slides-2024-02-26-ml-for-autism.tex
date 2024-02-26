@@ -1,11 +1,8 @@
 \documentclass{beamer} 
 \usepackage{tikz}
-\usepackage[all]{xy}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
 \usepackage{graphicx}
-\usepackage{algorithmic}
-\usepackage{multirow}
 
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\Lik}{Lik}
@@ -84,7 +81,7 @@
   \end{itemize}
 
 \includegraphics[width=\textwidth]{drawing-mnist-train-test}
-\end{frame}
+\end{frame} 
 
 \section{Data pre-processing}
 
@@ -227,15 +224,16 @@ selection, etc). For details see Hastie, {\it et al.} (2009) textbook.
   \frametitle{10-fold cross-validation for comparing learning algorithms}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features.png}
 
-  Learning algorithms we consider:
+Each dot can be computed in parallel:
 \begin{description}
-\item[cv\_glmnet] L1-regularized linear model (feature selection).
-\item[xgboost] Extreme gradient boosting (non-linear).
-\item[rpart] Recursive partitioning, decision tree (non-linear, feature selection).
-\item[nearest\_neighbors] classic non-linear algorithm.
-\item[featureless] un-informed baseline, ignores all inputs/features,
-  and always predicts the most frequent label in train data (Autism=No
-  in our case).
+\item[50x speedups] for this figure, 5 algorithms $\times$
+  10 cross-validation folds.
+\item[NAU Monsoon] super-computer cluster with 4000 CPUs, managed with
+  SLURM scheduler software. Typically 50-500x speedups relative to
+  sequential computation (1 CPU).
+\item[batchtools] R package interface to SLURM system.
+\item[mlr3batchmark] R package for running machine learning
+  computations in parallel using batchtools.
 \end{description}
 
 \end{frame}
@@ -458,7 +456,7 @@ Deafness=Yes,comorbidity
     on CRAN and \url{https://github.com/tdhock/mlr3resampling},
     cross-validation for train on one year, predict on another.
 \item These slides are reproducible, using the code in \url{https://github.com/tdhock/2024-01-ml-for-autism}
-  \item Let's collaborate! Contact: toby.hocking@nau.edu,
+  \item Contact: toby.hocking@nau.edu,
     toby.hocking@r-project.org
   \end{itemize}
 \end{frame}
