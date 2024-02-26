@@ -128,18 +128,54 @@ column, and creating two 0/1 columns:
 \section{Prediction accuracy in a given year}
 
 \begin{frame}
-  \frametitle{K-fold cross-validation: a standard algorithm used to estimate the prediction accuracy in machine learning}
+  \frametitle{$K$-fold cross-validation: a standard algorithm used to estimate the prediction accuracy in machine learning}
+
+  \begin{itemize}
+  \item $K=3$ folds shown in figure below, meaning three different
+    models trained, and three different prediction/test accuracy rates
+    computed.
+  \item It is important to use several train/test splits, so we can
+    see if there are statistically significant differences between
+    algorithms.
+  \item Rows/observations are people, inputs/features are survey
+    questions, and output/label is Autism response (Yes or No).
+  \end{itemize}
+
   \includegraphics[width=\textwidth]{drawing-cross-validation.pdf}
 \end{frame}
 
 \begin{frame}
   \frametitle{10-fold cross-validation for comparing learning algorithms}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features.png}
+
+Learning algorithms we consider:
+\begin{description}
+\item[cv\_glmnet] L1-regularized linear model (feature selection).
+\item[xgboost] Extreme gradient boosting (non-linear).
+\item[rpart] Recursive partitioning, decision tree (non-linear, feature selection).
+\item[nearest\_neighbors] classic non-linear algorithm.
+\item[featureless] un-informed baseline, ignores all inputs/features,
+  and always predicts the most frequent label in train data (Autism=No
+  in our case).
+\end{description}
+
 \end{frame}
 
 \begin{frame}
   \frametitle{Summarize 10 folds with mean and standard deviation}
   \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features-stats.png}
+
+Learning algorithms we consider:
+\begin{description}
+\item[cv\_glmnet] L1-regularized linear model (feature selection).
+\item[xgboost] Extreme gradient boosting (non-linear).
+\item[rpart] Recursive partitioning, decision tree (non-linear, feature selection).
+\item[nearest\_neighbors] classic non-linear algorithm.
+\item[featureless] un-informed baseline, ignores all inputs/features,
+  and always predicts the most frequent label in train data (Autism=No
+  in our case).
+\end{description}
+
 \end{frame}
 
 \begin{frame}
