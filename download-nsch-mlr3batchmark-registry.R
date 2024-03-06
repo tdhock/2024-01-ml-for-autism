@@ -196,8 +196,17 @@ for(score.i in 1:nrow(only.glmnet)){
   abs.mean.weight=abs(mean(weight))
 ), by=variable][order(-abs.mean.weight)])
 levs <- unique(weight.dt$variable)
-weight.dt[, Variable := factor(variable, levs)]
 weight.non.zero <- weight.dt[weight!=0]
+fwrite(
+  weight.non.zero,
+  "download-nsch-mlr3batchmark-registry-glmnet-coef-non-zero.csv")
+all.vars.dt <- weight.dt[, .(
+  mean.weight=mean(weight)
+), by=.(variable, folds.not.zero)][order(variable)]
+fwrite(
+  all.vars.dt,
+  "download-nsch-mlr3batchmark-registry-glmnet-coef-mean-all.csv")
+weight.non.zero[, Variable := factor(variable, levs)]
 gg <- ggplot()+
   theme_bw()+
   facet_grid(folds.not.zero ~ ., scales="free", space="free")+
@@ -273,3 +282,4 @@ png("download-nsch-mlr3batchmark-registry-predict-new-year.png", width=8, height
 print(gg)
 dev.off()
 
+system("cd /projects/genomic-ml && unpublish_data 2024-01-ml-for-autism && publish_data projects/2024-01-ml-for-autism")
