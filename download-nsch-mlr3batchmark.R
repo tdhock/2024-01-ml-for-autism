@@ -6,6 +6,7 @@ input.meta.dt <- category366[category!=""]
 feature.names.list <- with(input.meta.dt, split(column_name, category))
 feature.names.list[["all"]] <- input.meta.dt$column_name
 two.years <- fread("download-nsch-convert-do-2019-2020-366cols.csv", stringsAsFactors=TRUE)
+names(bench.dt)
 names(two.years)
 task.list <- list()
 for(feature.names in names(feature.names.list)){
@@ -13,13 +14,26 @@ for(feature.names in names(feature.names.list)){
   task.col.names <- c("survey_year", "Autism", feature.names.vec)
   task.dt <- two.years[, task.col.names, with=FALSE]
   setnames(task.dt, gsub("'", "", gsub("[$]", "USD", gsub("[],:;+?()/<> =[-]", "_", task.col.names, perl=TRUE))))
-  task_id <- sprintf("%s.%d", feature.names, length(feature.names.vec))
-  one.task <- mlr3::TaskClassif$new(
-    task_id, task.dt, target="Autism")
-  one.task$col_roles$stratum <- c("survey_year","Autism")
-  one.task$col_roles$group <- "survey_year"
-  task.list[[task_id]] <- one.task
+  flist <- list()
+  flist[[feature.names]] <- feature.names.vec
+  flist[[paste0("not_",feature.names)]] <- setdiff(
+    feature.names.list$all, feature.names.vec)
+  for(model.name in names(flist)){
+    fname.vec <- flist[[model.name]]
+    if(length(fname.vec)>1){
+      task_id <- sprintf("%s.%d", model.name, length(fname.vec))
+      one.task <- mlr3::TaskClassif$new(
+        task_id, task.dt, target="Autism")
+      one.task$col_roles$stratum <- c("survey_year","Autism")
+      one.task$col_roles$group <- "survey_year"
+      task.list[[task_id]] <- one.task
+    }
+  }
 }
+names(task.list)
+bench.dt <- data.table(task.dt)
+names(bench.dt)[2] <- "y"
+fwrite(bench.dt, "~/genomic-ml/projects/cv-same-other-paper/data_Classif/NSCH_autism.csv")
 
 subtrain.valid.cv <- mlr3resampling::ResamplingIgnoreGroupCV$new()
 subtrain.valid.cv$param_set$values$folds <- 5
