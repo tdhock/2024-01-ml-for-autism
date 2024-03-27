@@ -1,3 +1,8 @@
+** 26 Mars 2024
+[[file:figures-same-other/]] contains [[file:figures-same-other/NSCH_autism_error.csv][CSV]] and figures to show that it is not just size that matters.
+
+[[file:figures-same-other/NSCH_autism_error_mean_sd_more.png]]
+
 ** 26 Feb 2024
 
 [[file:HOCKING-slides-2024-02-26-ml-for-autism.tex]] makes
