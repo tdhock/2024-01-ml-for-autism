@@ -291,24 +291,6 @@ Learning algorithms we consider:
 \end{frame}
 
 \begin{frame}
-  \frametitle{Default prediction threshold can be viewed as a dot}
-  \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features-roc-zoom.png}
-
-  Relatively small FPR because there are so few positive labels
-  (Autism=Yes only 3\% of 27808 rows in 2020).
-% > out.dt[, table(survey_year, Autism)]
-%            Autism
-% survey_year   Yes    No
-%        2019   546 17656
-%        2020   857 26951  
-% > c2020=c(857, 26951)
-% > c2020/sum(c2020)
-% [1] 0.03081847 0.96918153
-% > sum(c2020)
-% [1] 27808
-\end{frame}
-
-\begin{frame}
   \frametitle{Area Under ROC Curve (AUC) quantifies accuracy over all thresholds}
   \begin{itemize}
   \item Different learning algorithms result in different FPR/TPR at
@@ -442,14 +424,6 @@ Deafness=Yes,comorbidity
 % 18202 27808 
 \end{frame}
 
-\begin{frame}
-  \frametitle{Cross-validation for determining similarity between years}
-  \includegraphics[width=\textwidth]{figures-same-other/NSCH_autism_error_mean_sd_more.png}
-  \begin{itemize}
-  \item TODO
-  \end{itemize}
-\end{frame}
-
 \section{Discussion and Conclusions}
 
 \begin{frame}
@@ -466,6 +440,32 @@ Deafness=Yes,comorbidity
 \item These slides are reproducible, using the code in \url{https://github.com/tdhock/2024-01-ml-for-autism}
   \item Contact: toby.hocking@nau.edu,
     toby.hocking@r-project.org
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Default prediction threshold can be viewed as a dot}
+  \includegraphics[width=\textwidth]{download-nsch-mlr3batchmark-registry-one-set-all-features-roc-zoom.png}
+
+  Relatively small FPR because there are so few positive labels
+  (Autism=Yes only 3\% of 27808 rows in 2020).
+% > out.dt[, table(survey_year, Autism)]
+%            Autism
+% survey_year   Yes    No
+%        2019   546 17656
+%        2020   857 26951  
+% > c2020=c(857, 26951)
+% > c2020/sum(c2020)
+% [1] 0.03081847 0.96918153
+% > sum(c2020)
+% [1] 27808
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cross-validation for determining similarity between years}
+  \includegraphics[width=\textwidth]{figures-same-other/NSCH_autism_error_mean_sd_more.png}
+  \begin{itemize}
+  \item Small dependence on data size in some cases.
   \end{itemize}
 \end{frame}
 
