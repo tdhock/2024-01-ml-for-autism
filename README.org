@@ -14,6 +14,8 @@ questions.
 
 Slides: https://github.com/tdhock/2024-01-ml-for-autism/blob/main/HOCKING-slides-2024-02-26-ml-for-autism.pdf
 
+See also code https://github.com/vas235/ASG3-machine-learning-prep from Vince which treats more than two years, and standardizes some variables between the years, using a JSON config file.
+
 ** 26 Mars 2024
 [[file:figures-same-other/]] contains [[file:figures-same-other/NSCH_autism_error.csv][CSV]] and figures to show that it is not just size that matters.
 
