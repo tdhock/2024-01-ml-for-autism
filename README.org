@@ -1,3 +1,19 @@
+Title: A tutorial on interpretable machine learning
+algorithms for understanding factors related to
+childhood autism
+
+Abstract: machine learning is a research area in computer science
+which is concerned with algorithms which learn from large data
+sets. For example, the National Survey of Children's Health (NSCH) is
+a survey that results in a large data set that can be used with
+machine learning -- can we predict if the child has autism, based on
+the other survey responses? How accurately can we predict? And what
+other survey responses are most useful for prediction? In this
+tutorial, I will show how machine learning can be used to answer these
+questions.
+
+Slides: https://github.com/tdhock/2024-01-ml-for-autism/blob/main/HOCKING-slides-2024-02-26-ml-for-autism.pdf
+
 ** 26 Mars 2024
 [[file:figures-same-other/]] contains [[file:figures-same-other/NSCH_autism_error.csv][CSV]] and figures to show that it is not just size that matters.
 
