@@ -1,0 +1,312 @@
+variable,value,desc,years,n.years,n.values
+a1_grade,7,"Bachelor's Degree (BA, BS, AB)","2019,2020,2021,2022",4,7
+a1_grade,7,"Bachelor’s Degree (BA, BS, AB)","2016,2017,2018",3,7
+a1_grade,8,"Master's Degree (MA, MS, MSW, MBA)","2019,2020,2021,2022",4,7
+a1_grade,8,"Master’s Degree (MA, MS, MSW, MBA)","2016,2017,2018",3,7
+a1_grade_if,1,Imputed,"2017,2018,2019,2020,2021,2022",6,7
+a1_grade_if,1,Imputed Value,2016,1,7
+a2_grade,7,"Bachelor's Degree (BA, BS, AB)","2019,2020,2021,2022",4,7
+a2_grade,7,"Bachelor’s Degree (BA, BS, AB)","2016,2017,2018",3,7
+a2_grade,8,"Master's Degree (MA, MS, MSW, MBA)","2019,2020,2021,2022",4,7
+a2_grade,8,"Master’s Degree (MA, MS, MSW, MBA)","2016,2017,2018",3,7
+a2_relation,8,There is only one primary adult caregiver for [fill SC_NAME],2017,1,7
+a2_relation,8,There is only one primary adult caregiver for this child,"2016,2018",2,7
+a2_relation,8,There is only one primary adult caregiver in the household for this child,"2019,2020,2021,2022",4,7
+arrangehc,6,(fill with SC_NAME) does not need health care provided on a weekly basis,2017,1,7
+arrangehc,6,This child does not need health care coordinated on a weekly basis,"2019,2020,2021,2022",4,7
+arrangehc,6,This child does not need health care provided on a weekly basis,"2016,2018",2,7
+athomehc,6,(fill with SC_NAME) does not need health care provided on a weekly basis,2017,1,7
+athomehc,6,This child does not need health care provided at home on a weekly basis,"2018,2019,2020,2021,2022",5,7
+athomehc,6,This child does not need health care provided on a weekly basis,2016,1,7
+birthwt,1,Very Low Birth Weight,2016,1,7
+birthwt,1,"Very low birth weight (less than 1,500g)","2017,2018,2019,2020,2021,2022",6,7
+birthwt,2,Low Birth Weight,2016,1,7
+birthwt,2,"Low birth weight (less than 2,500g)","2017,2018,2019,2020,2021,2022",6,7
+birthwt,3,Not Low Birth Weight,2016,1,7
+birthwt,3,Not low birth weight,"2017,2018,2019,2020,2021,2022",6,7
+calmdown,1,All of the time,2016,1,6
+calmdown,1,Always,"2017,2018,2019,2020,2021",5,6
+calmdown,3,About half the time,"2017,2018,2019,2020,2021",5,6
+calmdown,3,Some of the time,2016,1,6
+calmdown,4,None of the time,2016,1,6
+calmdown,4,Sometimes,"2017,2018,2019,2020,2021",5,6
+changeage,3,Don't Know,"2017,2018,2019,2020,2021,2022",6,7
+changeage,3,Dont Know,2016,1,7
+clearexp,1,All of the time,2016,1,7
+clearexp,1,Always,"2017,2018,2019,2020,2021,2022",6,7
+clearexp,3,About half the time,"2017,2018,2019,2020,2021,2022",6,7
+clearexp,3,Some of the time,2016,1,7
+clearexp,4,None of the time,2016,1,7
+clearexp,4,Sometimes,"2017,2018,2019,2020,2021,2022",6,7
+confident,1,Completely confident,"2017,2018,2019,2020,2021",5,6
+confident,1,Very confident,2016,1,6
+confident,4,Not at all confident,"2017,2018,2019,2020,2021",5,6
+confident,4,Not confident at all,2016,1,6
+countto,1,Not at all,2016,1,6
+countto,1,This child cannot count,"2017,2018,2019,2020,2021",5,6
+countto,6,Up to 100,"2016,2017",2,6
+countto,6,Up to 100 or more,"2018,2019,2020,2021",4,6
+currins,1,Currently insured,2016,1,7
+currins,1,Currently insured (does not include Indian Health Service or a religious health share),"2017,2018,2019,2020,2021,2022",6,7
+currins,2,Currently uninsured,2016,1,7
+currins,2,"Currently uninsured, or only insured through Indian Health Service or a religious health share","2017,2018,2019,2020,2021,2022",6,7
+distracted,1,All of the time,2016,1,7
+distracted,1,Always,"2017,2018,2019,2020,2021,2022",6,7
+distracted,3,About half the time,"2017,2018,2019,2020,2021,2022",6,7
+distracted,3,Some of the time,2016,1,7
+distracted,4,None of the time,2016,1,7
+distracted,4,Sometimes,"2017,2018,2019,2020,2021,2022",6,7
+fpl_if,1,Imputed,"2017,2018,2019,2020,2021,2022",6,7
+fpl_if,1,Imputed Value,2016,1,7
+gainskills,3,Don't Know,"2017,2018,2019,2020,2021,2022",6,7
+gainskills,3,Dont Know,2016,1,7
+hcability,1,This child does not have any conditions,"2016,2017,2018",3,7
+hcability,1,This child does not have any health conditions,"2019,2020,2021,2022",4,7
+higrade,1,Less than High School,2016,1,7
+higrade,1,Less than high school,"2017,2018,2019,2020,2021,2022",6,7
+higrade,2,"High School (including vocational, trade, or business school)",2016,1,7
+higrade,2,"High school (including vocational, trade, or business school)","2017,2018,2019,2020,2021,2022",6,7
+higrade,3,More than High School,2016,1,7
+higrade,3,More than high school,"2017,2018,2019,2020,2021,2022",6,7
+higrade_tvis,1,Less than High School,2016,1,7
+higrade_tvis,1,Less than high school,"2017,2018,2019,2020,2021,2022",6,7
+higrade_tvis,2,"High School (including vocational, trade, or business school)",2016,1,7
+higrade_tvis,2,"High school (including vocational, trade, or business school)","2017,2018,2019,2020,2021,2022",6,7
+hospitaler,1,Never,2017,1,7
+hospitaler,1,No visits,2016,1,7
+hospitaler,1,None,"2018,2019,2020,2021,2022",5,7
+hospitaler,2,1 time,"2017,2018,2019,2020,2021,2022",6,7
+hospitaler,2,1 visit,2016,1,7
+hospitaler,3,2 or more times,"2017,2018,2019,2020,2021",5,7
+hospitaler,3,2 or more visits,2016,1,7
+hospitaler,3,2-3 times,2022,1,7
+house_gen,1,1st generation household,2016,1,7
+house_gen,1,1st generation household [Child is born outside the United States and all reported parents are born outside the United States. At least one parent must be reported as born outside the United States.],"2017,2018,2019,2020,2021,2022",6,7
+house_gen,2,2nd generation household,2016,1,7
+house_gen,2,"2nd generation household [Child is born in the United States and at least one parent is born outside the United States OR child is born outside the United States, one parent is born in the United States and one parent is born outside the United States.]","2017,2018,2019,2020,2021,2022",6,7
+house_gen,3,3rd+ generation,2016,1,7
+house_gen,3,3rd+ generation [All parents in the household are born in the United States],"2017,2018,2019,2020,2021,2022",6,7
+house_gen,4,"Other (child born in United States, parents are not listed)",2016,1,7
+house_gen,4,"Other [Child is born in the United States, parents are not listed.]","2017,2018,2019,2020,2021,2022",6,7
+hurtsad,1,All of the time,2016,1,7
+hurtsad,1,Always,"2017,2018,2019,2020,2021,2022",6,7
+hurtsad,3,About half the time,"2017,2018,2019,2020,2021,2022",6,7
+hurtsad,3,Some of the time,2016,1,7
+hurtsad,4,None of the time,2016,1,7
+hurtsad,4,Sometimes,"2017,2018,2019,2020,2021,2022",6,7
+instype,1,Public Only,2016,1,7
+instype,1,Public only (government assistance),"2019,2020,2021,2022",4,7
+instype,1,Public only [government assistance],"2017,2018",2,7
+instype,2,Private Only,2016,1,7
+instype,2,"Private only (privately purchased, including through ACA marketplace, through employer, or TRICARE)","2019,2020,2021,2022",4,7
+instype,2,"Private only [privately purchased, including through ACA marketplace, through employer, or TRICARE]","2017,2018",2,7
+k11q43r,13,13 or 14,"2019,2020",2,3
+k11q43r,13,13 or more,2017,1,3
+k2q01_d,6,(fill with SC_NAME) does not have any teeth [T1 only],2017,1,7
+k2q01_d,6,This child does not have any teeth [T1 only],"2016,2018,2019,2020,2021,2022",6,7
+k2q35a_1_years,15,15 to 17,"2020,2021,2022",3,6
+k2q35a_1_years,15,"15, 16 or 17","2017,2018,2019",3,6
+k2q35d,7,Don't Know,"2017,2018,2019,2020,2021,2022",6,7
+k2q35d,7,Dont Know,2016,1,7
+k4q02_r,1,Doctor's Office,"2017,2018,2019,2020,2021,2022",6,7
+k4q02_r,1,Doctors Office,2016,1,7
+k4q02_r,5,Retail Store Clinic or 'Minute Clinic',"2017,2018,2019,2020,2021,2022",6,7
+k4q02_r,5,Retail Store Clinic or Minute Clinic,2016,1,7
+k4q02_r,6,"School (Nurse's Office, Athletic Trainer's Office)","2017,2018,2019,2020,2021,2022",6,7
+k4q02_r,6,"School (Nurses Office, Athletic Trainers Office)",2016,1,7
+k4q26,1,Not a problem,"2016,2017",2,7
+k4q26,1,Not difficult,"2018,2019,2020,2021,2022",5,7
+k4q26,2,Small problem,"2016,2017",2,7
+k4q26,2,Somewhat difficult,"2018,2019,2020,2021,2022",5,7
+k4q26,3,Big problem,"2016,2017",2,7
+k4q26,3,Very difficult,"2018,2019,2020,2021,2022",5,7
+k4q37,15,15 or 17,2021,1,4
+k4q37,15,"15, 16 or 17","2017,2018,2019",3,4
+k5q11,1,Not a problem,"2016,2017",2,7
+k5q11,1,Not difficult,"2018,2019,2020,2021,2022",5,7
+k5q11,2,Small problem,"2016,2017",2,7
+k5q11,2,Somewhat difficult,"2018,2019,2020,2021,2022",5,7
+k5q11,3,Big problem,"2016,2017",2,7
+k5q11,3,Very difficult,"2018,2019,2020,2021,2022",5,7
+k5q20_r,3,Did not see more than one health care provider in past 12 months,"2016,2017,2018,2019",4,7
+k5q20_r,3,Did not see more than one health care provider in the PAST 12 MONTHS,"2020,2021,2022",3,7
+k6q08_r,1,Very concerned,2017,1,6
+k6q08_r,1,Very well,2016,1,6
+k6q08_r,1,"Yes, somewhat concerned","2018,2019,2020,2021",4,6
+k6q08_r,2,Somewhat,2016,1,6
+k6q08_r,2,Somewhat concerned,2017,1,6
+k6q08_r,2,"Yes, very concerned","2018,2019,2020,2021",4,6
+k6q08_r,3,No,"2018,2019,2020,2021",4,6
+k6q08_r,3,Not at all concerned,2017,1,6
+k6q08_r,3,Poorly,2016,1,6
+k6q70_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k6q70_r,1,Definitely true,"2016,2017",2,7
+k6q70_r,2,Somewhat true,"2016,2017",2,7
+k6q70_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k6q70_r,3,Not true,"2016,2017",2,7
+k6q70_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k6q71_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k6q71_r,1,Definitely true,"2016,2017",2,7
+k6q71_r,2,Somewhat true,"2016,2017",2,7
+k6q71_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k6q71_r,3,Not true,"2016,2017",2,7
+k6q71_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k6q72_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k6q72_r,1,Definitely true,"2016,2017",2,7
+k6q72_r,2,Somewhat true,"2016,2017",2,7
+k6q72_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k6q72_r,3,Not true,"2016,2017",2,7
+k6q72_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k6q73_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k6q73_r,1,Definitely true,"2016,2017",2,7
+k6q73_r,2,Somewhat true,"2016,2017",2,7
+k6q73_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k6q73_r,3,Not true,"2016,2017",2,7
+k6q73_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k7q04r_r,1,No times,"2016,2017",2,7
+k7q04r_r,1,None,"2018,2019,2020,2021,2022",5,7
+k7q70_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k7q70_r,1,Definitely true,"2016,2017",2,7
+k7q70_r,2,Somewhat true,"2016,2017",2,7
+k7q70_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k7q70_r,3,Not true,"2016,2017",2,7
+k7q70_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k7q82_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k7q82_r,1,Definitely true,"2016,2017",2,7
+k7q82_r,2,Somewhat true,"2016,2017",2,7
+k7q82_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k7q82_r,3,Not true,"2016,2017",2,7
+k7q82_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k7q83_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k7q83_r,1,Definitely true,"2016,2017",2,7
+k7q83_r,2,Somewhat true,"2016,2017",2,7
+k7q83_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k7q83_r,3,Not true,"2016,2017",2,7
+k7q83_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k7q84_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k7q84_r,1,Definitely true,"2016,2017",2,7
+k7q84_r,2,Somewhat true,"2016,2017",2,7
+k7q84_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k7q84_r,3,Not true,"2016,2017",2,7
+k7q84_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k7q85_r,1,Always,"2018,2019,2020,2021,2022",5,7
+k7q85_r,1,Definitely true,"2016,2017",2,7
+k7q85_r,2,Somewhat true,"2016,2017",2,7
+k7q85_r,2,Usually,"2018,2019,2020,2021,2022",5,7
+k7q85_r,3,Not true,"2016,2017",2,7
+k7q85_r,3,Sometimes,"2018,2019,2020,2021,2022",5,7
+k8q21,4,Not at all,"2016,2017",2,7
+k8q21,4,Not well at all,"2018,2019,2020,2021,2022",5,7
+k8q30,4,Not at all,"2016,2017",2,7
+k8q30,4,Not well at all,"2018,2019,2020,2021,2022",5,7
+menbevcov,5,(fill with SC_NAME) does not use mental or behavioral health services,2017,1,7
+menbevcov,5,This child does not use mental or behavioral health services,"2016,2018,2019,2020,2021,2022",6,7
+metro_yn,1,In Metropolitan Statistical Area,2016,1,7
+metro_yn,1,Metropolitan Statistical Area,"2017,2018,2019,2020,2021,2022",6,7
+metro_yn,2,Not Metropolitan Statistical Area,"2017,2018,2019,2020,2021,2022",6,7
+metro_yn,2,Not in Metropolitan Statistical Area,2016,1,7
+mpc_yn,1,In Metropolitan Principal City,2016,1,7
+mpc_yn,1,Metropolitan Principal City,"2017,2018,2019,2020,2021,2022",6,7
+mpc_yn,2,Not Metropolitan Principal City,"2017,2018,2019,2020,2021,2022",6,7
+mpc_yn,2,Not in Metropolitan Principal City,2016,1,7
+newactivity,1,All of the time,2016,1,6
+newactivity,1,Always,"2017,2018,2019,2020,2021",5,6
+newactivity,3,About half the time,"2017,2018,2019,2020,2021",5,6
+newactivity,3,Some of the time,2016,1,6
+newactivity,4,None of the time,2016,1,6
+newactivity,4,Sometimes,"2017,2018,2019,2020,2021",5,6
+pesticide,8,Don't know,2019,1,3
+pesticide,8,Don’t know,"2017,2018",2,3
+planfuture,3,Don't Know,2017,1,2
+planfuture,3,Dont Know,2016,1,2
+playwell,1,All of the time,2016,1,7
+playwell,1,Always,"2017,2018,2019,2020,2021,2022",6,7
+playwell,3,About half the time,"2017,2018,2019,2020,2021,2022",6,7
+playwell,3,Some of the time,2016,1,7
+playwell,4,None of the time,2016,1,7
+playwell,4,Sometimes,"2017,2018,2019,2020,2021,2022",6,7
+poschoice,3,Don't Know,"2017,2018,2019,2020,2021,2022",6,7
+poschoice,3,Dont Know,2016,1,7
+recogabc,3,About half of them,"2017,2018,2019,2020,2021,2022",6,7
+recogabc,3,Some of them,2016,1,7
+recogabc,4,None of them,2016,1,7
+recogabc,4,Some of them,"2017,2018,2019,2020,2021,2022",6,7
+recogbegin,1,All of the time,2016,1,7
+recogbegin,1,Always,"2017,2018,2019,2020,2021,2022",6,7
+recogbegin,3,About half the time,"2017,2018,2019,2020,2021,2022",6,7
+recogbegin,3,Some of the time,2016,1,7
+recogbegin,4,None of the time,2016,1,7
+recogbegin,4,Sometimes,"2017,2018,2019,2020,2021,2022",6,7
+recshapes,1,All of the time,2016,1,6
+recshapes,1,Always,"2017,2018,2019,2020,2021",5,6
+recshapes,3,About half the time,"2017,2018,2019,2020,2021",5,6
+recshapes,3,Some of the time,2016,1,6
+recshapes,4,None of the time,2016,1,6
+recshapes,4,Sometimes,"2017,2018,2019,2020,2021",5,6
+sc_hispanic_r_if,1,Imputed,"2017,2018,2019,2020,2021,2022",6,7
+sc_hispanic_r_if,1,Imputed Value,2016,1,7
+sc_race_r_if,1,Imputed,"2017,2018,2019,2020,2021,2022",6,7
+sc_race_r_if,1,Imputed Value,2016,1,7
+sc_sex_if,1,Imputed,"2017,2018,2019,2020,2021,2022",6,7
+sc_sex_if,1,Imputed Value,2016,1,7
+simpleinst,1,All of the time,2016,1,6
+simpleinst,1,Always,"2017,2018,2019,2020,2021",5,6
+simpleinst,3,About half the time,"2017,2018,2019,2020,2021",5,6
+simpleinst,3,Some of the time,2016,1,6
+simpleinst,4,None of the time,2016,1,6
+simpleinst,4,Sometimes,"2017,2018,2019,2020,2021",5,6
+sitstill,1,All of the time,2016,1,6
+sitstill,1,Always,"2017,2018,2019,2020,2021",5,6
+sitstill,3,About half the time,"2017,2018,2019,2020,2021",5,6
+sitstill,3,Some of the time,2016,1,6
+sitstill,4,None of the time,2016,1,6
+sitstill,4,Sometimes,"2017,2018,2019,2020,2021",5,6
+sleeppos,1,On his or her side,"2016,2017,2018,2019",4,7
+sleeppos,1,On their side,"2020,2021,2022",3,7
+sleeppos,2,On his or her back,"2016,2017,2018,2019",4,7
+sleeppos,2,On their back,"2020,2021,2022",3,7
+sleeppos,3,On his or her stomach,"2016,2017,2018,2019",4,7
+sleeppos,3,On their stomach,"2020,2021,2022",3,7
+startschool,1,Yes,2016,1,7
+startschool,1,"Yes, preschool","2017,2018,2019,2020,2021,2022",6,7
+startschool,2,No,2016,1,7
+startschool,2,"Yes, kindergarten","2017,2018,2019,2020,2021,2022",6,7
+temper,1,All of the time,2016,1,6
+temper,1,Always,"2017,2018,2019,2020,2021",5,6
+temper,3,About half the time,"2017,2018,2019,2020,2021",5,6
+temper,3,Some of the time,2016,1,6
+temper,4,None of the time,2016,1,6
+temper,4,Sometimes,"2017,2018,2019,2020,2021",5,6
+tenure,1,Owned by you or someone in this household with a mortgage or loan?,2018,1,5
+tenure,1,Owned by you or someone in this household with a mortgage or loan? Include home equity loans,"2019,2020,2021,2022",4,5
+totkids_r,4,4 or more,2016,1,7
+totkids_r,4,4+,"2017,2018,2019,2020,2021,2022",6,7
+treatneed,1,Not a problem,"2016,2017",2,7
+treatneed,1,Not difficult,"2018,2019,2020,2021,2022",5,7
+treatneed,2,Small problem,"2016,2017",2,7
+treatneed,2,Somewhat difficult,"2018,2019,2020,2021,2022",5,7
+treatneed,3,Big problem,"2016,2017",2,7
+treatneed,3,Very difficult,"2018,2019,2020,2021,2022",5,7
+usepencil,1,Uses fingers,2016,1,6
+usepencil,1,Uses fingers to hold the pencil,"2017,2018,2019,2020,2021",5,6
+usepencil,2,Grips in fist,2016,1,6
+usepencil,2,Grips the pencil in his or her fist,"2017,2018,2019",3,6
+usepencil,2,Grips the pencil in their fist,"2020,2021",2,6
+usepencil,3,Cannot hold a pencil,2016,1,6
+usepencil,3,This child cannot hold a pencil,"2017,2018,2019,2020,2021",5,6
+wgtconc,1,"Yes, it's too high","2017,2018,2019,2020,2021,2022",6,7
+wgtconc,1,"Yes, its too high",2016,1,7
+wgtconc,2,"Yes, it's too low","2017,2018,2019,2020,2021,2022",6,7
+wgtconc,2,"Yes, its too low",2016,1,7
+worktofin,1,All of the time,2016,1,6
+worktofin,1,Always,"2017,2018,2019,2020,2021",5,6
+worktofin,3,About half the time,"2017,2018,2019,2020,2021",5,6
+worktofin,3,Some of the time,2016,1,6
+worktofin,4,None of the time,2016,1,6
+worktofin,4,Sometimes,"2017,2018,2019,2020,2021",5,6
+writename,1,All of the time,2016,1,7
+writename,1,Always,"2017,2018,2019,2020,2021,2022",6,7
+writename,3,About half the time,"2017,2018,2019,2020,2021,2022",6,7
+writename,3,Some of the time,2016,1,7
+writename,4,None of the time,2016,1,7
+writename,4,Sometimes,"2017,2018,2019,2020,2021,2022",6,7
