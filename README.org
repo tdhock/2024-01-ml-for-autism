@@ -23,6 +23,7 @@ See also code https://github.com/vas235/ASG3-machine-learning-prep from Vince wh
 - columns with values present in only some years (probably need to standardize across years) [[file:2024-08-06-vince-data/clean-data-values-only-in-some-years.csv]]
 - all column desc, TODO manually add categories [[file:2024-08-06-vince-data/clean-data-var-all-desc.csv]]
 - columns with not only one desc value, TODO pick which one we should use for display [[file:2024-08-06-vince-data/clean-data-var-not-one-desc.csv]]
+- values with diferent codes in different years, actually irrelevant for clean-data.rds because the values in that file are already decoded [[file:2024-08-06-vince-data/define_anomalies.csv]]
 
 ** 26 Mars 2024
 [[file:figures-same-other/]] contains [[file:figures-same-other/NSCH_autism_error.csv][CSV]] and figures to show that it is not just size that matters.
