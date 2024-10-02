@@ -16,6 +16,14 @@ Slides: https://github.com/tdhock/2024-01-ml-for-autism/blob/main/HOCKING-slides
 
 See also code https://github.com/vas235/ASG3-machine-learning-prep from Vince which treats more than two years, and standardizes some variables between the years, using a JSON config file.
 
+** 2 Oct 2024
+
+[[file:2024-08-06-vince-data/clean-data.R]] reads [[file:2024-08-06-vince-data/clean-data/clean-data.rds]] and outputs
+
+- columns with values present in only some years (probably need to standardize across years) [[file:2024-08-06-vince-data/clean-data-values-only-in-some-years.csv]]
+- all column desc, TODO manually add categories [[file:2024-08-06-vince-data/clean-data-var-all-desc.csv]]
+- columns with not only one desc value, TODO pick which one we should use for display [[file:2024-08-06-vince-data/clean-data-var-not-one-desc.csv]]
+
 ** 26 Mars 2024
 [[file:figures-same-other/]] contains [[file:figures-same-other/NSCH_autism_error.csv][CSV]] and figures to show that it is not just size that matters.
 

@@ -1,7 +1,44 @@
 library(data.table)
 clean_data <- readRDS("clean-data/clean-data.rds")
 with(clean_data, table(year, k2q35a, useNA="always"))
+not.X <- c("year", "k2q35a")
 names(clean_data)
+X.name.vec <- setdiff(names(clean_data),not.X)
+
+count.dt.list <- list()
+categorical.dt.list <- list()
+for(X.name in X.name.vec){
+  X.col <- clean_data[[X.name]]
+  col.type <- "numeric"
+  if(is.factor(X.col)){
+    col.type <- "factor"
+    X.dt <- clean_data[
+    , c(X.name, "year"), with=FALSE
+    ][
+    , {
+      u <- unique(year)
+      .(count=.N, n.years=length(u), years=paste(u, collapse=","))
+    }, by=c(value=X.name)
+    ][, `:=`(
+      min.years = min(n.years),
+      max.years = max(n.years)
+    )][]
+    categorical.dt.list[[X.name]] <- data.table(variable=X.name, X.dt)
+  }
+  count.dt.list[[X.name]] <- data.table(X.name, n.unique=length(unique(X.col)), col.type)
+}
+(count.dt <- rbindlist(count.dt.list)[order(n.unique)])
+(categorical.dt <- rbindlist(categorical.dt.list)[order(min.years, variable, years, value), .(min.years, max.years, n.years, years, variable, count, value)])
+categorical.dt[min.years<max.years]
+fwrite(categorical.dt, "clean-data-values-only-in-some-years.csv")
+
+## > table(clean_data[["k6q71_r.1"]]) ### .1???
+##     Never Sometimes    Always   Usually 
+##      2042     29830    180976     64060 
+## > table(clean_data[["k6q71_r"]])
+##     Never Sometimes    Always   Usually 
+##      2042     29830    180976     64060 
+
 
 regex.list <- list(
   var=list(
@@ -38,24 +75,51 @@ for(year.do in year.do.some){
   }
 }
 do.meta <- list()
+anomaly.list <- list()
+by.var.list <- list(
+  define=c("variable","value"),
+  var="variable")
+var.config.list <- RJSONIO::fromJSON("clean-data/variable-config.json")
+names(var.config.list$transformations)
+transform.names <- names(var.config.list$transformations$transform)
+col.count.list <- list()
 for(data.type in names(do.dt.list)){
   one.do <- rbindlist(do.dt.list[[data.type]])
+  by.vec <- by.var.list[[data.type]]
+  col.counts <- data.table(one.do)[
+  , n.values := .N, by=by.vec
+  ][
+  , .(
+    years=paste(year,collapse=","),
+    n.years=.N,
+    n.values=n.values[1]
+  ), keyby=c(by.vec,"desc")
+  ]
+  col.count.list[[data.type]] <- col.counts
+  anomaly.list[[data.type]] <- col.counts[
+    n.years<n.values
+  ][
+    names(clean_data), nomatch=0L
+  ][
+  , trans := variable %in% transform.names
+  ]
   do.meta[[data.type]] <- one.do
 }
+anomaly.list$define
 
-do.meta$define[, `:=`(
-  n.values=.N,
-  n.unique=length(unique(desc))
-), keyby=.(variable,value)
-][n.unique>1]
+var.desc <- col.count.list$var[names(clean_data), .(
+  desc,
+  n.desc=.N,
+  years,
+  n.years
+), on="variable", by=.EACHI][order(variable)]
+fwrite(var.desc, "clean-data-var-all-desc.csv")
+not.one <- var.desc[n.desc != 1]
+fwrite(not.one, "clean-data-var-not-one-desc.csv")
 
-max.years <- length(unique(do.meta$define$year))
-define_anomalies <- do.meta$define[, .(
-  years=paste(year, collapse=","),
-  n.years=.N,
-  n.values=n.values[1]
-), keyby=.(variable, value, desc)][n.years<n.values]
-fwrite(define_anomalies, "define_anomalies.csv")
+names(var.config.list$transformations$merge_columns)
+names(var.config.list$transformations$rename_columns)
+names(clean_data)
 
 year.dt[, Autism := k2q35a]
 prop.NA <- colMeans(is.na(year.dt))

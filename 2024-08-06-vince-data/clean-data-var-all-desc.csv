@@ -1,0 +1,200 @@
+variable,desc,n.desc,years,n.years
+a1_age,Adult 1 - Age in Years,1,"2016,2017,2018,2019,2020,2021,2022",7
+a1_born,Adult 1 - Where Born,1,"2016,2017,2018,2019,2020,2021,2022",7
+a1_grade,Adult 1 - Highest Completed Year of School,1,"2016,2017,2018,2019,2020,2021,2022",7
+a1_marital,Adult 1 - Marital Status,1,"2016,2017,2018,2019,2020,2021,2022",7
+a1_menthealth,Adult 1 - Mental or Emotional Health,1,"2016,2017,2018,2019,2020,2021,2022",7
+a1_physhealth,Adult 1 - Physical Health,1,"2016,2017,2018,2019,2020,2021,2022",7
+a1_relation,Adult 1 - How Related to Child,1,"2016,2017,2018,2019,2020,2021,2022",7
+a1_sex,Adult 1 - Sex,1,"2016,2017,2018,2019,2020,2021,2022",7
+a2_age,Adult 2 - Age in Years,1,"2016,2017,2018,2019,2020,2021,2022",7
+a2_born,Adult 2 - Where Born,1,"2016,2017,2018,2019,2020,2021,2022",7
+a2_grade,Adult 2 - Highest Completed Year of School,1,"2016,2017,2018,2019,2020,2021,2022",7
+a2_marital,Adult 2 - Marital Status,1,"2016,2017,2018,2019,2020,2021,2022",7
+a2_menthealth,Adult 2 - Mental or Emotional Health,1,"2016,2017,2018,2019,2020,2021,2022",7
+a2_physhealth,Adult 2 - Physical Health,1,"2016,2017,2018,2019,2020,2021,2022",7
+a2_relation,Adult 2 - How Related to Child,1,"2016,2017,2018,2019,2020,2021,2022",7
+a2_sex,Adult 2 - Sex,1,"2016,2017,2018,2019,2020,2021,2022",7
+ace1,Hard to Cover Basics Like Food or Housing,1,"2016,2017,2018,2019,2020,2021,2022",7
+ace10,Child Experienced - Treated Unfairly Because of Race,1,"2016,2017,2018,2019,2020,2021,2022",7
+ace3,Child Experienced - Parent or Guardian Divorced,1,"2016,2017,2018,2019,2020,2021,2022",7
+ace4,Child Experienced - Parent or Guardian Died,1,"2016,2017,2018,2019,2020,2021,2022",7
+ace5,Child Experienced - Parent or Guardian Time in Jail,1,"2016,2017,2018,2019,2020,2021,2022",7
+ace6,"Child Experienced - Adults Slap, Hit, Kick, Punch Others",1,"2016,2017,2018,2019,2020,2021,2022",7
+ace7,Child Experienced - Victim of Violence,1,"2016,2017,2018,2019,2020,2021,2022",7
+ace8,Child Experienced - Lived with Mentally Ill,1,"2016,2017,2018,2019,2020,2021,2022",7
+ace9,Child Experienced - Lived with Person with Alcohol/Drug Problem,1,"2016,2017,2018,2019,2020,2021,2022",7
+agepos4,Birth Order of Selected Children in Household,1,"2016,2017,2018,2019,2020,2021,2022",7
+allergies,Allergies,1,"2016,2017,2018,2019,2020,2021,2022",7
+althealth,Alternative Health Care,1,"2016,2017,2018,2019,2020,2021,2022",7
+arrangehc,Hours Spent Arranging Health Medical Care,1,"2016,2017,2018,2019,2020,2021,2022",7
+athomehc,Hours Spent Providing Home Health Care,1,"2016,2017,2018,2019,2020,2021,2022",7
+autismmed,Autism ASD - Medication Currently,1,"2016,2017,2018,2019,2020,2021,2022",7
+autismtreat,Autism ASD - Behavioral Treatment,1,"2016,2017,2018,2019,2020,2021,2022",7
+avoidchg,Past 12 Months - Avoided Changing Jobs to Maintain Health Insurance,1,"2016,2017,2018,2019,2020,2021,2022",7
+bedtime,How Often - Go to Bed at Same Time,1,"2016,2017,2018,2019,2020,2021,2022",7
+bestforchild,How Often - Work to Decide Together Treatment,1,"2016,2017,2018,2019,2020,2021,2022",7
+birthwt,Birth Weight Status,1,"2016,2017,2018,2019,2020,2021,2022",7
+blindness,Blindness,1,"2016,2017,2018,2019,2020,2021,2022",7
+blood,Blood Disorder,1,"2016,2017,2018,2019,2020,2021,2022",7
+bornusa,Born in the United States,1,"2016,2017,2018,2019,2020,2021,2022",7
+breathing,Difficulty Breathing,2,2016,1
+breathing,Difficulty Breathing Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+c4q04,Frustrated In Efforts to Get Service,1,"2016,2017,2018,2019,2020,2021,2022",7
+cavities,Difficulty Cavities,2,2016,1
+cavities,Difficulty Cavities Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+cbsafp_yn,Core Based Statistical Area Status,1,"2016,2017,2018,2019,2020,2021,2022",7
+currins,Health Insurance Coverage - Currently Covered,1,"2016,2017,2018,2019,2020,2021,2022",7
+cuthours,Past 12 Months -Cut Hours because of Health Conditions,1,"2016,2017,2018,2019,2020,2021,2022",7
+cystfib,Cystic Fibrosis,1,"2016,2017,2018,2019,2020,2021,2022",7
+dentistvisit,Dental Provider Visit - How Many Visits,2,2016,1
+dentistvisit,Preventive Dental Visit - How Many Visits,2,"2017,2018,2019,2020,2021,2022",6
+devscrnng,,0,,
+diabetes,Diabetes,1,2022,1
+discussopt,How Often - Discussed Range of Options,2,2016,1
+discussopt,How Often - Provider Discussed Range of Options,2,"2017,2018,2019,2020,2021,2022",6
+downsyn,Down Syndrome,1,"2016,2017,2018,2019,2020,2021,2022",7
+eyedoctor,Visition Tested by Eye Doctor,1,"2021,2022",2
+famcount,Number of People That Are Family Members,1,"2016,2017,2018,2019,2020,2021,2022",7
+family,Family Structure,1,2016,1
+fipsst,State FIPS Code,1,"2016,2017,2018,2019,2020,2021,2022",7
+foodsit,Food Situation In Household - Past 12 Months,1,"2016,2017,2018,2019,2020,2021,2022",7
+fpl_i1,"Family Poverty Ratio, First Implicate",1,"2016,2017,2018,2019,2020,2021,2022",7
+fwc,Selected Child Weight,1,"2016,2017,2018,2019,2020,2021,2022",7
+genetic,Genetic Condition,1,"2016,2017,2018,2019,2020,2021,2022",7
+goforhelp,Know Where to Go For Help,1,"2016,2017,2018,2019,2020,2021,2022",7
+gumbleed,Difficulty Bleeding Gums,2,2016,1
+gumbleed,Difficulty Bleeding Gums Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+hcability,Health Affected Ability - How Often,1,"2016,2017,2018,2019,2020,2021,2022",7
+headache,Headaches,1,"2016,2017,2018,2019,2020,2021,2022",7
+heart,Heart Condition,1,"2016,2017,2018,2019,2020,2021,2022",7
+hhcount,Number of People Living at Address,1,"2016,2017,2018,2019,2020,2021,2022",7
+hhid,Unique HH ID,2,2016,1
+hhid,Unique Household ID,2,"2017,2018,2019,2020,2021,2022",6
+hhlanguage,Primary HH Language,2,2016,1
+hhlanguage,Primary Household Language,2,"2017,2018,2019,2020,2021,2022",6
+higrade,Highest Level of Education among Reported Adults,1,"2016,2017,2018,2019,2020,2021,2022",7
+higrade_tvis,"Highest Level of Education among Reported Adults, Detail",1,"2016,2017,2018,2019,2020,2021,2022",7
+hopeful,Facing Problems - How Often Stay Hopeful,1,"2016,2017,2018,2019,2020,2021,2022",7
+hospitaler,Hospital Emergency Room Visits,1,"2016,2017,2018,2019,2020,2021,2022",7
+house_gen,Parental Nativity,1,"2016,2017,2018,2019,2020,2021,2022",7
+howmuch,How Much Medical Health Care - Past 12 Months,1,"2016,2017,2018,2019,2020,2021,2022",7
+insgap,Health Insurance Coverage - Past 12 Months,1,"2016,2017,2018,2019,2020,2021,2022",7
+instype,Insurance Type,2,2016,1
+instype,Insurance Type (Revised),2,"2017,2018,2019,2020,2021,2022",6
+k10q11,Neighborhood - Sidewalks or Walking Paths,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q12,Neighborhood - Park or Playground,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q13,Neighborhood - Recreation Center,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q14,Neighborhood - Library or Bookmobile,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q20,Neighborhood - Litter or Garbage,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q22,Neighborhood - Poorly Kept or Rundown Housing,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q23,Neighborhood - Vandalism,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q30,People In Neighborhood Help Each Other Out,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q31,Watch Out for Other's Children,1,"2016,2017,2018,2019,2020,2021,2022",7
+k10q40_r,Child is Safe In Neighborhood,1,"2016,2017,2018,2019,2020,2021,2022",7
+k11q43r,How Many Times Moved to New Address,1,"2016,2017,2018,2019,2020,2021,2022",7
+k11q60,Cash Assistance from Government - Past 12 Months,1,"2016,2017,2018,2019,2020,2021,2022",7
+k11q61,Food Stamps - Past 12 Months,1,"2016,2017,2018,2019,2020,2021,2022",7
+k11q62,Free or Reduced Cost Meals - Past 12 Months,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q01,General Health,2,"2017,2018,2019,2020,2021,2022",6
+k2q01,Health Description,2,2016,1
+k2q01_d,Teeth Description,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q05,Born 3 Weeks Before Due Date,2,2016,1
+k2q05,Born 3 or More Weeks Before Due Date,2,"2017,2018,2019,2020,2021,2022",6
+k2q30a,Learning Disability,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q31a,ADD/ADHD,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q32a,Depression,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q33a,Anxiety,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q34a,Behavior Problems,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q35a,Autism ASD,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q35a_1_years,Autism ASD - First Told Age in Years,2,"2017,2018,2019,2020,2021,2022",6
+k2q35a_1_years,Autism ASD How Old - Age in Years,2,2016,1
+k2q35b,Autism ASD Currently,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q35c,Autism ASD Description,2,2016,1
+k2q35c,Autism ASD Severity Description,2,"2017,2018,2019,2020,2021,2022",6
+k2q35d,Autism ASD - Doctor Diagnose,2,2016,1
+k2q35d,Autism ASD - First Told Doctor Type,2,"2017,2018,2019,2020,2021,2022",6
+k2q36a,Developmental Delay,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q37a,Speech Disorder,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q38a,Tourette Syndrome,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q40a,Asthma,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q42a,Epilepsy,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q43b,Deafness,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q60a,Intellectual Disability,1,"2016,2017,2018,2019,2020,2021,2022",7
+k2q61a,Cerebral Palsy,1,"2016,2017,2018,2019,2020,2021,2022",7
+k4q01,Place Usually Goes Sick,1,"2016,2017,2018,2019,2020,2021,2022",7
+k4q02_r,Place Usually Goes Sick - Where,1,"2016,2017,2018,2019,2020,2021,2022",7
+k4q04_r,Personal Doctor or Nurse - One or More,1,"2016,2017,2018,2019,2020,2021,2022",7
+k4q20r,Doctor Visit - How Many Times,2,2016,1
+k4q20r,Preventive Visit - How Many Times,2,"2017,2018,2019,2020,2021,2022",6
+k4q22_r,Mental Health Professional Treatment,1,"2016,2017,2018,2019,2020,2021,2022",7
+k4q23,Emotions Concentration Behavior Medication,1,"2016,2017,2018,2019,2020,2021,2022",7
+k4q24_r,Specialist Visit,1,"2016,2017,2018,2019,2020,2021,2022",7
+k4q27,Needed Health Care Not Received,1,"2016,2017,2018,2019,2020,2021,2022",7
+k4q36,Received Special Services,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q10,Need a Referral,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q11,Need a Referral - Problem,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q20_r,Arrange Or Coordinate Care Among Doctors,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q21,Arrange Or Coordinate Care Extra Help,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q31_r,"Communication with School, Child Care, Special Education Program",2,2016,1
+k5q31_r,"Provider Communication with School, Child Care, Special Education Program",2,"2017,2018,2019,2020,2021,2022",6
+k5q40,How Often - Spend Enough Time,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q41,How Often - Listen Carefully,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q42,How Often - Show Sensitivity,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q43,How Often - Provide Specific Information,1,"2016,2017,2018,2019,2020,2021,2022",7
+k5q44,How Often - Feel Like a Partner,1,"2016,2017,2018,2019,2020,2021,2022",7
+k6q15,Special Education Plan,1,"2016,2017,2018,2019,2020,2021,2022",7
+k6q71_r,Interest Curiosity,2,2016,1
+k6q71_r,Show Interest and Curiosity,2,"2017,2018,2019,2020,2021,2022",6
+k6q71_r.1,,0,,
+k8q11,How Many Days - Family Eat Meal Together,1,"2016,2017,2018,2019,2020,2021,2022",7
+k8q30,How Well Handling Demands of Raising Children,1,"2016,2017,2018,2019,2020,2021,2022",7
+k8q31,How Often Have You Felt - Child Hard to Care For,1,"2016,2017,2018,2019,2020,2021,2022",7
+k8q32,How Often Have You Felt - Child Really Bothers You,1,"2016,2017,2018,2019,2020,2021,2022",7
+k8q34,How Often Have You Felt - Angry with Child,1,"2016,2017,2018,2019,2020,2021,2022",7
+k8q35,Someone to Turn To for Emotional Support,1,"2016,2017,2018,2019,2020,2021,2022",7
+k9q40,Anyone in Household Use Cigarettes,1,"2016,2017,2018,2019,2020,2021,2022",7
+metro_yn,Metropolitan Statistical Area Status,1,"2016,2017,2018,2019,2020,2021,2022",7
+momage,Age of Mother - Years,1,"2016,2017,2018,2019,2020,2021,2022",7
+mpc_yn,Metropolitan Principal City Status,1,"2016,2017,2018,2019,2020,2021,2022",7
+physicalpain,Difficulty Physical Pain,2,2016,1
+physicalpain,Difficulty Physical Pain Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+s4q01,Doctor Visit,1,"2016,2017,2018,2019,2020,2021,2022",7
+s9q34,WIC Benefits - Past 12 Months,1,"2016,2017,2018,2019,2020,2021,2022",7
+sc_age_years,Age of Selected Child - In Years,1,"2016,2017,2018,2019,2020,2021,2022",7
+sc_cshcn,Special Health Care Needs Status of Selected Child,1,"2016,2017,2018,2019,2020,2021,2022",7
+sc_k2q10,SC Medication Currently,2,2016,1
+sc_k2q10,SC Needs or Uses Medication Currently,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q13,SC Medical Care Currently,2,2016,1
+sc_k2q13,SC Needs or Uses More Medical Care than Others,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q16,SC Limited Ability,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q16,SC Limited Ability Currently,2,2016,1
+sc_k2q19,SC Special Therapy,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q19,SC Special Therapy Currently,2,2016,1
+sc_k2q22,SC Emotion Develop Behave Treatment,2,2016,1
+sc_k2q22,SC Needs Treatment for Emotion Develop Behave,2,"2017,2018,2019,2020,2021,2022",6
+sc_race_r,"Race of Selected Child, Detailed",1,"2016,2017,2018,2019,2020,2021,2022",7
+sc_sex,Sex of Selected Child,1,"2016,2017,2018,2019,2020,2021,2022",7
+sleep,,0,,
+stomach,Difficulty Stomach,2,2016,1
+stomach,Difficulty Stomach Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+stopwork,Past 12 Months - Stopped Working because of Health Status,1,"2016,2017,2018,2019,2020,2021,2022",7
+stratum,Sampling Stratum,1,"2016,2017,2018,2019,2020,2021,2022",7
+strengths,Facing Problems - How Often Draw on Strengths,1,"2016,2017,2018,2019,2020,2021,2022",7
+swallowing,Difficulty Swallowing,2,2016,1
+swallowing,Difficulty Swallowing Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+talkabout,Facing Problems - How Often Talk Together,1,"2016,2017,2018,2019,2020,2021,2022",7
+toothaches,Difficulty Toothaches,2,2016,1
+toothaches,Difficulty Toothaches Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+totage_0_5,Count of Children Ages 0 to 5 in Household,1,"2016,2017,2018,2019,2020,2021,2022",7
+totage_12_17,Count of Children Ages 12 to 17 in Household,1,"2016,2017,2018,2019,2020,2021,2022",7
+totage_6_11,Count of Children Ages 6 to 11 in Household,1,"2016,2017,2018,2019,2020,2021,2022",7
+totcshcn,Count of Children with Special Health Care Needs in Household,1,"2016,2017,2018,2019,2020,2021,2022",7
+totfemale,Count of Female Children in Household,1,"2016,2017,2018,2019,2020,2021,2022",7
+totmale,Count of Male Children in Household,1,"2016,2017,2018,2019,2020,2021,2022",7
+totnonshcn,Count of Children without Special Health Care Needs in Household,1,"2016,2017,2018,2019,2020,2021,2022",7
+usualgo,Place Usually Goes Routine Preventive Care,2,2016,1
+usualgo,Place Usually Goes for Preventive Care,2,"2017,2018,2019,2020,2021,2022",6
+wgtconc,Concerned About Weight,1,"2016,2017,2018,2019,2020,2021,2022",7
+wktosolve,Facing Problems - How Often Work Together,1,"2016,2017,2018,2019,2020,2021,2022",7
+year,Survey Year,1,"2016,2017,2018,2019,2020,2021,2022",7

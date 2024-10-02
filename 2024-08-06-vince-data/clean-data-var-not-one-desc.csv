@@ -1,0 +1,56 @@
+variable,desc,n.desc,years,n.years
+breathing,Difficulty Breathing,2,2016,1
+breathing,Difficulty Breathing Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+cavities,Difficulty Cavities,2,2016,1
+cavities,Difficulty Cavities Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+dentistvisit,Dental Provider Visit - How Many Visits,2,2016,1
+dentistvisit,Preventive Dental Visit - How Many Visits,2,"2017,2018,2019,2020,2021,2022",6
+devscrnng,,0,,
+discussopt,How Often - Discussed Range of Options,2,2016,1
+discussopt,How Often - Provider Discussed Range of Options,2,"2017,2018,2019,2020,2021,2022",6
+gumbleed,Difficulty Bleeding Gums,2,2016,1
+gumbleed,Difficulty Bleeding Gums Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+hhid,Unique HH ID,2,2016,1
+hhid,Unique Household ID,2,"2017,2018,2019,2020,2021,2022",6
+hhlanguage,Primary HH Language,2,2016,1
+hhlanguage,Primary Household Language,2,"2017,2018,2019,2020,2021,2022",6
+instype,Insurance Type,2,2016,1
+instype,Insurance Type (Revised),2,"2017,2018,2019,2020,2021,2022",6
+k2q01,General Health,2,"2017,2018,2019,2020,2021,2022",6
+k2q01,Health Description,2,2016,1
+k2q05,Born 3 Weeks Before Due Date,2,2016,1
+k2q05,Born 3 or More Weeks Before Due Date,2,"2017,2018,2019,2020,2021,2022",6
+k2q35a_1_years,Autism ASD - First Told Age in Years,2,"2017,2018,2019,2020,2021,2022",6
+k2q35a_1_years,Autism ASD How Old - Age in Years,2,2016,1
+k2q35c,Autism ASD Description,2,2016,1
+k2q35c,Autism ASD Severity Description,2,"2017,2018,2019,2020,2021,2022",6
+k2q35d,Autism ASD - Doctor Diagnose,2,2016,1
+k2q35d,Autism ASD - First Told Doctor Type,2,"2017,2018,2019,2020,2021,2022",6
+k4q20r,Doctor Visit - How Many Times,2,2016,1
+k4q20r,Preventive Visit - How Many Times,2,"2017,2018,2019,2020,2021,2022",6
+k5q31_r,"Communication with School, Child Care, Special Education Program",2,2016,1
+k5q31_r,"Provider Communication with School, Child Care, Special Education Program",2,"2017,2018,2019,2020,2021,2022",6
+k6q71_r,Interest Curiosity,2,2016,1
+k6q71_r,Show Interest and Curiosity,2,"2017,2018,2019,2020,2021,2022",6
+k6q71_r.1,,0,,
+physicalpain,Difficulty Physical Pain,2,2016,1
+physicalpain,Difficulty Physical Pain Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q10,SC Medication Currently,2,2016,1
+sc_k2q10,SC Needs or Uses Medication Currently,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q13,SC Medical Care Currently,2,2016,1
+sc_k2q13,SC Needs or Uses More Medical Care than Others,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q16,SC Limited Ability,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q16,SC Limited Ability Currently,2,2016,1
+sc_k2q19,SC Special Therapy,2,"2017,2018,2019,2020,2021,2022",6
+sc_k2q19,SC Special Therapy Currently,2,2016,1
+sc_k2q22,SC Emotion Develop Behave Treatment,2,2016,1
+sc_k2q22,SC Needs Treatment for Emotion Develop Behave,2,"2017,2018,2019,2020,2021,2022",6
+sleep,,0,,
+stomach,Difficulty Stomach,2,2016,1
+stomach,Difficulty Stomach Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+swallowing,Difficulty Swallowing,2,2016,1
+swallowing,Difficulty Swallowing Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+toothaches,Difficulty Toothaches,2,2016,1
+toothaches,Difficulty Toothaches Past 12 Months,2,"2017,2018,2019,2020,2021,2022",6
+usualgo,Place Usually Goes Routine Preventive Care,2,2016,1
+usualgo,Place Usually Goes for Preventive Care,2,"2017,2018,2019,2020,2021,2022",6
