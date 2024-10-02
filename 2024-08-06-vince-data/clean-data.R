@@ -4,6 +4,7 @@ with(clean_data, table(year, k2q35a, useNA="always"))
 not.X <- c("year", "k2q35a")
 names(clean_data)
 X.name.vec <- setdiff(names(clean_data),not.X)
+fwrite(dcast(clean_data, year ~ k5q21, length), sep="\t")
 
 count.dt.list <- list()
 categorical.dt.list <- list()
@@ -25,11 +26,9 @@ for(X.name in X.name.vec){
     )][]
     categorical.dt.list[[X.name]] <- data.table(variable=X.name, X.dt)
   }
-  count.dt.list[[X.name]] <- data.table(X.name, n.unique=length(unique(X.col)), col.type)
+  dc.dt <- dcast(data.table(isNA=is.na(X.col),year=clean_data$year), . ~ year, mean,value.var="isNA")[,-1]
+  count.dt.list[[X.name]] <- data.table(variable=X.name, n.unique=length(unique(X.col)), col.type, "%NA"=dc.dt*100)
 }
-(count.dt <- rbindlist(count.dt.list)[order(n.unique)])
-(categorical.dt <- rbindlist(categorical.dt.list)[order(min.years, variable, years, value), .(min.years, max.years, n.years, years, variable, count, value)])
-categorical.dt[min.years<max.years]
 
 ## > table(clean_data[["k6q71_r.1"]]) ### .1???
 ##     Never Sometimes    Always   Usually 
@@ -38,6 +37,7 @@ categorical.dt[min.years<max.years]
 ##     Never Sometimes    Always   Usually 
 ##      2042     29830    180976     64060 
 
+dcast(clean_data[year>2016], year ~ fpl_i1)
 
 regex.list <- list(
   var=list(
@@ -103,8 +103,13 @@ for(data.type in names(do.dt.list)){
   , trans := variable %in% transform.names
   ]
   do.meta[[data.type]] <- one.do
+  out.csv <- sprintf("clean-data-all-%s.csv", data.type)
+  setkeyv(one.do, by.vec)
+  fwrite(one.do, out.csv)
 }
-anomaly.list$define
+anomaly.list$define[, .(
+  years=paste(year,collapse=",")
+), by=.(variable,value)]
 
 var.desc <- col.count.list$var[names(clean_data), .(
   desc,
@@ -115,8 +120,23 @@ var.desc <- col.count.list$var[names(clean_data), .(
 fwrite(var.desc, "clean-data-var-all-desc.csv")
 not.one <- var.desc[n.desc != 1]
 fwrite(not.one, "clean-data-var-not-one-desc.csv")
-
 (most.freq <- var.desc[, .SD[which.max(n.years)], by=variable])
+
+nsch2017 <- haven::read_dta("clean-data/download-nsch-data/nsch_2017_topical.dta")
+hist(nsch2017$fpl_i1)
+
+(count.dt <- rbindlist(count.dt.list)[
+  order(n.unique)
+][
+, diff2017.2016 := `%NA.2017`-`%NA.2016`
+][])
+(count.join <- most.freq[,.(variable,desc,n.desc)][
+  count.dt,
+  on="variable", mult="first"])
+fwrite(count.join,"clean-data-unique-type-missing.csv")
+
+(categorical.dt <- rbindlist(categorical.dt.list)[order(min.years, variable, years, value), .(min.years, max.years, n.years, years, variable, count, value)])
+categorical.dt[min.years<max.years]
 (categorical.desc <- most.freq[, .(variable,desc)][categorical.dt,on="variable"][min.years<max.years])
 categorical.desc[is.na(desc)]
 fwrite(categorical.desc, "clean-data-values-only-in-some-years.csv")
