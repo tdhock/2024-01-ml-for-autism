@@ -30,7 +30,6 @@ for(X.name in X.name.vec){
 (count.dt <- rbindlist(count.dt.list)[order(n.unique)])
 (categorical.dt <- rbindlist(categorical.dt.list)[order(min.years, variable, years, value), .(min.years, max.years, n.years, years, variable, count, value)])
 categorical.dt[min.years<max.years]
-fwrite(categorical.dt, "clean-data-values-only-in-some-years.csv")
 
 ## > table(clean_data[["k6q71_r.1"]]) ### .1???
 ##     Never Sometimes    Always   Usually 
@@ -116,6 +115,11 @@ var.desc <- col.count.list$var[names(clean_data), .(
 fwrite(var.desc, "clean-data-var-all-desc.csv")
 not.one <- var.desc[n.desc != 1]
 fwrite(not.one, "clean-data-var-not-one-desc.csv")
+
+(most.freq <- var.desc[, .SD[which.max(n.years)], by=variable])
+(categorical.desc <- most.freq[, .(variable,desc)][categorical.dt,on="variable"][min.years<max.years])
+categorical.desc[is.na(desc)]
+fwrite(categorical.desc, "clean-data-values-only-in-some-years.csv")
 
 names(var.config.list$transformations$merge_columns)
 names(var.config.list$transformations$rename_columns)
