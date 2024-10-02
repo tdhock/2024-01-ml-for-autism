@@ -16,6 +16,15 @@ Slides: https://github.com/tdhock/2024-01-ml-for-autism/blob/main/HOCKING-slides
 
 See also code https://github.com/vas235/ASG3-machine-learning-prep from Vince which treats more than two years, and standardizes some variables between the years, using a JSON config file.
 
+** TODOs
+
+- subset on autism, try to predict autism service variables in that subset
+- H1: Receipt of AAP-recommended developmental screening  -- DevScrnng
+- H2. Early ASD Diagnosis at Age < 3 Years – K2Q35A_1_Years
+- H3a. Current ASD Service Use including Medication -- AUTISMMED
+- H3b. Current ASD Service Use including Behavior Therapy -- AUTISMTREAT
+- H4: Optimal Access to ASD Services including Early Diagnosis (diagnosis age < 3 years) & Current Behavior Therapy Use for ASD (Might add early intervention here too because captured in the NSCH) -- K2Q35A_1_Years < 3 & AUTISMTREAT
+
 ** 2 Oct 2024
 
 [[file:2024-08-06-vince-data/clean-data.R]] reads [[file:2024-08-06-vince-data/clean-data/clean-data.rds]] and outputs
