@@ -19,11 +19,89 @@ See also code https://github.com/vas235/ASG3-machine-learning-prep from Vince wh
 ** TODOs
 
 - subset on autism, try to predict autism service variables in that subset
-- H1: Receipt of AAP-recommended developmental screening  -- DevScrnng
-- H2. Early ASD Diagnosis at Age < 3 Years – K2Q35A_1_Years
-- H3a. Current ASD Service Use including Medication -- AUTISMMED
-- H3b. Current ASD Service Use including Behavior Therapy -- AUTISMTREAT
-- H4: Optimal Access to ASD Services including Early Diagnosis (diagnosis age < 3 years) & Current Behavior Therapy Use for ASD (Might add early intervention here too because captured in the NSCH) -- K2Q35A_1_Years < 3 & AUTISMTREAT
+  - H1: Receipt of AAP-recommended developmental screening  -- DevScrnng
+  - H2. Early ASD Diagnosis at Age < 3 Years – K2Q35A_1_Years
+  - H3a. Current ASD Service Use including Medication -- AUTISMMED
+  - H3b. Current ASD Service Use including Behavior Therapy -- AUTISMTREAT
+  - H4: Optimal Access to ASD Services including Early Diagnosis (diagnosis age < 3 years) & Current Behavior Therapy Use for ASD (Might add early intervention here too because captured in the NSCH) -- K2Q35A_1_Years < 3 & AUTISMTREAT
+- SOAK on years, also on periods (2016-2017=old survey questions,
+  2018-2019=new questions before covid, 2020-2022=new questions after
+  covid)
+
+** 10 Oct 2024
+
+[[file:2024-10-09-vince-data/clean-data.R]] reads data from github and verifies if everything is ok for ML analysis.
+
+Still a few issues.
+
+Two variables with 0 responses in 2016-2017
+
+*** interest
+
+k6q71_r Show Interest and Curiosity     5       7       5       2018,2019,2020,2021,2022        21175   Usually
+
+=> no responses for "Usually" in 2016 nor 2017 -- added in 2018
+
+other responses are: Sometimes, Never, Always, missing
+
+so could be converted to "frequency of interest and curiosity" numeric variable: 0=Never, 1=Sometimes, 2=Usually, 3=Always (bigger values for more frequent)
+
+or Vince suggests: Usually could just be collapsed back into Sometimes, in years 2018-2022 to make it work with 2016
+
+[[file:2024-10-09-vince-data/heat-map-interest-values.png]]
+
+The right heat map shows your proposed substitution (Usually changed to Sometimes), there still seems to be a significant change in proportions between 2017 and 2018.
+I guess this can be attributed to the change in wording of the question.
+for ML this is probably sub-optimal but it is probably better than the original variable, with Usually in some years and not others.
+
+
+*** family
+
+family  Family Structure        6       7       6       2017,2018,2019,2020,2021,2022   9950    Single father
+
+family  Family Structure        6       7       6       2017,2018,2019,2020,2021,2022   6560    Grandparent household
+
+=> neither of these two responses in 2016 -- added in 2017
+
+other values are:
+
+missing
+
+Two biogical/adoptive parents, currently married
+
+Other relation
+
+Two parents (at least one not biological/adoptive), currently married
+
+Single mother
+
+Two biogical/adoptive parents, not currently married
+
+Two parents (at least one not biological/adoptive), not currently married
+
+so "family" really is categorical.
+
+a way to work around this would be to convert "Single father" and "Grandparent household" to the response which they probably used for this in 2016: "Other relation"
+
+[[file:2024-10-09-vince-data/heat-map-family-values.png]]
+
+The left heat map shows the current data (variable: family) has a decrease in Other proportion from 6.8% in 2016 to 1.0 in 2017.
+The right heat map shows the preoposed work around (variable: familyOld) has more stable Other proportion, 7.2% in 2017, and no entries for "Single Father" nor "Grandparent household"
+So this figure suggests that the proposed work around should make this variable more comparable between years. (although we lose some granularity -- we could see differences between Single Father and Grandparent if we exclude 2016 from the analysis and keep the original family variable)
+
+*** missing values
+
+Three variables with no missing values in 2017 and after, but 2-3%
+missing values in 2016.
+
+#+begin_src 
+The only thing I saw was the same one you mentioned:
+a1_grade        Adult 1 - Highest Completed Year of School      1       10      factor  3.04    0.00
+higrade_tvis    Highest Level of Education among Reported Adults, Detail        1       5       factor  2.38    0.00    0.00
+higrade Highest Level of Education among Reported Adults        1       4       factor  2.38    0.00    0.00    0.00
+=> no missing values for this variable on 2017+later, but 2-3% missing values in 2016, seems unusual to have zero vs not.
+#+end_src
+
 
 ** 2 Oct 2024
 

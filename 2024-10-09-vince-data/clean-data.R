@@ -6,13 +6,127 @@ for(local.file in c("clean-data.rds","variable-config.json")){
     download.file(u, local.file)
   }
 }
-clean_data <- readRDS(local.rds)
+clean_data <- readRDS("clean-data.rds")
 with(clean_data, table(year, k2q35a, useNA="always"))
 with(clean_data, table(year, useNA="always"))
 not.X <- c("year", "k2q35a")
 names(clean_data)
 X.name.vec <- setdiff(names(clean_data),not.X)
 fwrite(dcast(clean_data, year ~ k5q21, length), sep="\t")
+
+## viz responses not used in 2016.
+dcast(clean_data, family ~ year, length)
+family.props <- melt(
+  dcast(clean_data, family ~ year, length),
+  measure.vars=measure(year=as.integer, pattern="([0-9]+)"),
+  value.name="count"
+)[
+, prop := count/sum(count), by=year
+][]
+library(ggplot2)
+ggplot()+
+  geom_tile(aes(
+    year, family, fill=log10(prop)),
+    data=family.props)+
+  scale_fill_gradient(low="white", high="red")+
+  geom_text(aes(
+    year, family, label=sprintf("%.1f", prop*100)),
+    data=family.props)
+
+## viz substitution.  
+family.long <- melt(
+  clean_data[
+  , familyOld := ifelse(
+    family %in% c("Grandparent household", "Single father"),
+    "Other relation",
+    as.character(family))
+  ],
+  measure.vars=c("family", "familyOld"),
+  id.vars="year")
+family.wide <- dcast(
+  family.long, variable + year + value ~ ., length
+)[
+, prop := ./sum(.), by=.(variable, year)
+][]
+ggplot()+
+  theme_bw()+
+  theme(panel.grid.minor=element_blank())+
+  facet_grid(. ~ variable, labeller=label_both)+
+  coord_equal()+
+  geom_tile(aes(
+    year, value, fill=log10(prop)),
+    color="grey",
+    data=family.wide)+
+  scale_fill_gradient(low="white", high="red")+
+  geom_text(aes(
+    year+0.4, value, label=sprintf("%.1f", prop*100)),
+    hjust=1,
+    data=family.wide)+
+  scale_x_continuous(breaks=unique(family.wide$year))
+
+
+interest.props <- melt(
+  dcast(clean_data[
+  , interest_curiosity := k6q71_r
+  ], interest_curiosity ~ year, length),
+  measure.vars=measure(year=as.integer, pattern="(^[0-9]+)"),
+  value.name="count"
+)[
+, prop := count/sum(count), by=year
+][]
+library(ggplot2)
+ggplot()+
+  geom_tile(aes(
+    year, interest_curiosity, fill=log10(prop)),
+    data=interest.props)+
+  scale_fill_gradient(low="white", high="red")+
+  geom_text(aes(
+    year, interest_curiosity, label=sprintf("%.1f", prop*100)),
+    data=interest.props)
+## 2016-2017
+##     Question: How true are each of the following statements about this child?...This child shows interest and curiosity in learning new things
+##         1 = Definitely true
+##         2 = Somewhat true
+##         3 = Not true 
+##     2018-2022
+##     Question : How often:...Does this child show interest and curiosity in learning new things?
+##         1 = Always
+##         2 = Usually
+##         3 = Sometimes
+##         4 = Never
+
+## viz substitution interest.
+interest.long <- melt(
+  clean_data[
+  , interest_curiosity_old := ifelse(
+    interest_curiosity=="Usually",
+    "Sometimes",
+    as.character(interest_curiosity))
+  ],
+  measure.vars=c("interest_curiosity", "interest_curiosity_old"),
+  id.vars="year")
+interest.wide <- dcast(
+  interest.long, variable + year + value ~ ., length
+)[
+, prop := ./sum(.), by=.(variable, year)
+][]
+ggplot()+
+  theme_bw()+
+  theme(panel.grid.minor=element_blank())+
+  facet_grid(. ~ variable, labeller=label_both)+
+  coord_equal()+
+  geom_tile(aes(
+    year, value, fill=log10(prop)),
+    color="grey",
+    data=interest.wide)+
+  scale_fill_gradient(low="white", high="red")+
+  geom_text(aes(
+    year+0.4, value, label=sprintf("%.1f", prop*100)),
+    hjust=1,
+    data=interest.wide)+
+  scale_x_continuous(breaks=unique(interest.wide$year))
+
+
 
 count.dt.list <- list()
 categorical.dt.list <- list()
