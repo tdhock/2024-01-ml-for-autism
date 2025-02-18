@@ -28,6 +28,25 @@ See also code https://github.com/vas235/ASG3-machine-learning-prep from Vince wh
   2018-2019=new questions before covid, 2020-2022=new questions after
   covid)
 
+to launch the cross-validation experiments in parallel, adapt
+[[file:download-nsch-mlr3batchmark.R]] and
+- when constructing task.list, keep for loop over
+  feature.names/model.name as in current code, if you want to check if
+  certain groups of features are required for optimal prediction
+  accuracy.
+- when constructing learner.list, only keep glmnet/featureless if you
+  want speed, otherwise keep rpart/xgboost/knn/etc if you want to
+  compare with non-linear learning algorithms (potentially more
+  accurate than the glmnet linear model).
+- when constructing task.list, add a for loop over different
+  target/output variables to predict (after subsetting on patients
+  with Autism). Current code only considers one output "Autism" column
+  (for all patients).
+- when constructing task.list, add a for loop over different subset
+  column: year or period (2016-2017=old survey questions,
+  2018-2019=new questions before covid, 2020-2022=new questions after
+  covid).
+
 ** 10 Oct 2024
 
 [[file:2024-10-09-vince-data/clean-data.R]] reads data from github and verifies if everything is ok for ML analysis.
