@@ -46,9 +46,14 @@ to launch the cross-validation experiments in parallel, adapt
   column: year or period (2016-2017=old survey questions,
   2018-2019=new questions before covid, 2020-2022=new questions after
   covid).
+- To get at the idea of disparities between different subsets of
+  people (race, income, etc) we can use SOAK to determine if there are
+  similar patterns in those different subsets.
 - all of the different algorithms, tasks, and train/test splits can be
-  run in parallel, on NAU Monsoon, using mlr3batchmark package, see [[https://tdhock.github.io/blog/2024/hyper-parameter-tuning/][my
-  blog]] and the references therein.
+  run in parallel, on NAU Monsoon, using mlr3batchmark package, see
+  [[https://tdhock.github.io/blog/2024/hyper-parameter-tuning/][my mlr3batchmark blog]] and the references therein, in particular
+  [[https://tdhock.github.io/blog/2020/monsoon-batchtools/][my Monsoon R tutorial]] for a general overview about how to use Monsoon
+  with R and batchtools.
 
 ** 10 Oct 2024
 
