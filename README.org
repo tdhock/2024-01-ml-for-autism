@@ -55,6 +55,20 @@ to launch the cross-validation experiments in parallel, adapt
   [[https://tdhock.github.io/blog/2020/monsoon-batchtools/][my Monsoon R tutorial]] for a general overview about how to use Monsoon
   with R and batchtools.
 
+** 19 Aug 2025
+
+Power analysis: [[file:nsch-power-data.R]] makes [[file:nsch-power-data.RData]]
+
+[[file:nsch-power.R]] makes
+
+[[file:nsch-power.png]]
+
+We see that
+
+- min 200 samples (~6 Autism diagnoses) is not sufficient to learn a non-trivial model.
+- 800 samples is sufficient for learning a non-trivial model (5-10 features selected).
+- 12,000 samples results in a more accurate and more complex model (larger Test AUC, 15-30 features selected).
+
 ** 10 Oct 2024
 
 [[file:2024-10-09-vince-data/clean-data.R]] reads data from github and verifies if everything is ok for ML analysis.

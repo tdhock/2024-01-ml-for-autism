@@ -9,11 +9,12 @@ for(learner.i in 1:nrow(score_dt)){
   }
   set(score_dt, i=learner.i, j="Features selected", value=n_sel)
 }
+AUC <- "Test AUC"
 score_stats <- dcast(
-  score_dt[, "Test AUC" := classif.auc],
+  score_dt[, (AUC) := classif.auc],
   algorithm + n.train.groups ~ .,
   list(mean, sd, length, min, max, median),
-  value.var=c("Test AUC", "Features selected"))
+  value.var=c(AUC, "Features selected"))
 score_tall <- melt(
   score_stats,
   measure.vars=measure(metric, value.name, sep="_"))
@@ -28,13 +29,15 @@ gg <- ggplot()+
     size=1,
     data=score_tall)+
   facet_grid(metric ~ ., scales="free")+
-  scale_x_log10("Number of surveys in train set")+
+  scale_x_log10(
+    "Number of surveys in train set (log scale)",
+    breaks=c(200, 400, 800, 1500, 3000, 6000, 12000))+
   theme_bw()+
   theme(legend.position=c(0.8, 0.2))+
-  scale_y_continuous("")+
+  scale_y_continuous("Median line and min/max band over train/test splits\n(3-fold cross-validation)")+
   geom_blank(aes(
     x, y),
-    data=data.frame(x=300, y=1, metric="Test AUC"))+
+    data=data.frame(x=300, y=1, metric=AUC))+
   ggtitle("NCSH 2019 data, 3% Autism prevalence\nPredicting Autism diagnosis using linear model\n365 features input to learning algorithm")
 png("nsch-power.png", width=5, height=4, units="in", res=200)
 print(gg)
