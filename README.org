@@ -28,9 +28,50 @@ See also code https://github.com/vas235/ASG3-machine-learning-prep from Vince wh
   2018-2019=new questions before covid, 2020-2022=new questions after
   covid)
 
+to launch the cross-validation experiments in parallel, adapt
+[[file:download-nsch-mlr3batchmark.R]] and
+- when constructing task.list, keep for loop over
+  feature.names/model.name as in current code, if you want to check if
+  certain groups of features are required for optimal prediction
+  accuracy.
+- when constructing learner.list, only keep glmnet/featureless if you
+  want speed, otherwise keep rpart/xgboost/knn/etc if you want to
+  compare with non-linear learning algorithms (potentially more
+  accurate than the glmnet linear model).
+- when constructing task.list, add a for loop over different
+  target/output variables to predict (after subsetting on patients
+  with Autism). Current code only considers one output "Autism" column
+  (for all patients).
+- when constructing task.list, add a for loop over different subset
+  column: year or period (2016-2017=old survey questions,
+  2018-2019=new questions before covid, 2020-2022=new questions after
+  covid).
+- To get at the idea of disparities between different subsets of
+  people (race, income, etc) we can use SOAK to determine if there are
+  similar patterns in those different subsets.
+- all of the different algorithms, tasks, and train/test splits can be
+  run in parallel, on NAU Monsoon, using mlr3batchmark package, see
+  [[https://tdhock.github.io/blog/2024/hyper-parameter-tuning/][my mlr3batchmark blog]] and the references therein, in particular
+  [[https://tdhock.github.io/blog/2020/monsoon-batchtools/][my Monsoon R tutorial]] for a general overview about how to use Monsoon
+  with R and batchtools.
+
 ** 13 jan 2026
 
 [[file:download-only.R]] downloads NSCH data (to port to [[https://github.com/NAU-ASD3/nsch][R package nsch]]).
+
+** 19 Aug 2025
+
+Power analysis: [[file:nsch-power-data.R]] makes [[file:nsch-power-data.RData]]
+
+[[file:nsch-power.R]] makes
+
+[[file:nsch-power.png]]
+
+We see that
+
+- min 200 samples (~6 Autism diagnoses) is not sufficient to learn a non-trivial model.
+- 800 samples is sufficient for learning a non-trivial model (5-10 features selected).
+- 12,000 samples results in a more accurate and more complex model (larger Test AUC, 15-30 features selected).
 
 ** 10 Oct 2024
 
