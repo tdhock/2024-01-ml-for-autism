@@ -28,6 +28,10 @@ See also code https://github.com/vas235/ASG3-machine-learning-prep from Vince wh
   2018-2019=new questions before covid, 2020-2022=new questions after
   covid)
 
+** 13 jan 2026
+
+[[file:download-only.R]] downloads NSCH data (to port to [[https://github.com/NAU-ASD3/nsch][R package nsch]]).
+
 ** 10 Oct 2024
 
 [[file:2024-10-09-vince-data/clean-data.R]] reads data from github and verifies if everything is ok for ML analysis.
