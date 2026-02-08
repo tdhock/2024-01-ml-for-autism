@@ -55,7 +55,7 @@ to launch the cross-validation experiments in parallel, adapt
   [[https://tdhock.github.io/blog/2020/monsoon-batchtools/][my Monsoon R tutorial]] for a general overview about how to use Monsoon
   with R and batchtools.
 
-** 7 fév 2026
+** 7 Feb 2026
 
 [[file:nsch-pkg-test.R]] downloads all nsch data, converting to csv.
 
@@ -73,7 +73,7 @@ to launch the cross-validation experiments in parallel, adapt
 9:  2024        3124        51375      457           3          457        2
 #+end_src
 
-** 13 jan 2026
+** 13 Jan 2026
 
 [[file:download-only.R]] downloads NSCH data (to port to [[https://github.com/NAU-ASD3/nsch][R package nsch]]).
 
