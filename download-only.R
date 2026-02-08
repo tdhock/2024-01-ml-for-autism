@@ -16,7 +16,8 @@ nsch.prefix <- "https://www.census.gov/programs-surveys/nsch/data/datasets."
 data.dir <- "download-only"
 dir.create(data.dir, showWarnings = FALSE)
 nsch.prefix <- "https://www.census.gov/programs-surveys/nsch/data/datasets."
-for(year in 2016:2022){
+all.urls.dt.list <- list()
+for(year in 2016:2024){
   year.html <- paste0(year, ".html")
   ##https://www.census.gov/programs-surveys/nsch/data/
   u <- paste0(nsch.prefix, year.html)
@@ -24,9 +25,9 @@ for(year in 2016:2022){
   if(!file.exists(dest.html))download.file(u, dest.html)
   url.dt <- nc::capture_all_str(
     dest.html,
-    'href="',
-    url=".*?topical.*?zip",
+    url="//.*?topical.*?zip",
     '"')
+  all.urls.dt.list[[paste(year)]] <- url.dt
   if(nrow(url.dt)==0)stop("no urls on ", dest.html)
   for(url.i in 1:nrow(url.dt)){
     zip.url <- paste0("http:", url.dt[url.i, url])
@@ -35,6 +36,8 @@ for(year in 2016:2022){
     unzip(year.zip, exdir=data.dir)
   }
 }
+
+(all.urls.dt <- rbindlist(all.urls.dt.list))
 
 one.dta <- haven::read_dta("download-nsch-data/nsch_2018_topical.dta")
 one.dta$k2q33a
