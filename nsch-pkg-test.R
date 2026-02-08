@@ -4,10 +4,10 @@ fwrite_list <- function(data_list, year_dir, verbose=FALSE){
     out.csv <- file.path(
       year_dir,
       sprintf("%s.csv", data_type))
-    data.table::fwrite(type_dt, out.csv)
     if(verbose)cat(sprintf(
       "writing %s %d×%d\n",
       out.csv, nrow(type_dt), ncol(type_dt)))
+    data.table::fwrite(type_dt, out.csv)
   }
 }
 
@@ -18,12 +18,14 @@ Stata2csv <- function(Stata_dir, csv_dir, year, verbose=FALSE){
     "nsch_%d_topical.do"=parse_do,
     "nsch_%de_topical.dta"=parse_dta)
   year_dir <- file.path(csv_dir, year)
+  if(verbose)cat(sprintf("converting %s to %s\n", Stata_dir, year_dir))
   dir.create(year_dir, showWarnings=FALSE, recursive=TRUE)
   for(fmt in names(file_list)){
     read_fun <- file_list[[fmt]]
     data_file <- file.path(
       Stata_dir,
       sprintf(fmt, year))
+    if(verbose)cat(sprintf("reading %s\n", data_file))
     data_list <- read_fun(data_file)
     fwrite_list(data_list, year_dir, verbose)
   }
