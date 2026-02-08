@@ -74,7 +74,7 @@ parse_do <- function(year.do){
 
 
 remotes::install_github("NAU-ASD3/nsch@download-funs")
-data_dir <- "nsch-pkg-test"
+data_dir <- "NSCH_data"
 original_Stata <- file.path(data_dir, "00_original_Stata")
 dir.create(original_Stata, showWarnings = FALSE, recursive = TRUE)
 csv_dir <- file.path(data_dir, "01_original_csv")
