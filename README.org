@@ -60,60 +60,17 @@ to launch the cross-validation experiments in parallel, adapt
 [[file:nsch-pkg-test.R]] downloads all nsch data, converting to csv.
 
 #+begin_src
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2024
-reading nsch-pkg-test/00_original_Stata/nsch_2024_topical.do
-writing nsch-pkg-test/01_original_csv/2024/var.csv 457×2
-writing nsch-pkg-test/01_original_csv/2024/define.csv 3124×3
-reading nsch-pkg-test/00_original_Stata/nsch_2024e_topical.dta
-writing nsch-pkg-test/01_original_csv/2024/surveys.csv 51375×457
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2023
-reading nsch-pkg-test/00_original_Stata/nsch_2023_topical.do
-writing nsch-pkg-test/01_original_csv/2023/var.csv 456×2
-writing nsch-pkg-test/01_original_csv/2023/define.csv 3113×3
-reading nsch-pkg-test/00_original_Stata/nsch_2023e_topical.dta
-writing nsch-pkg-test/01_original_csv/2023/surveys.csv 55162×456
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2022
-reading nsch-pkg-test/00_original_Stata/nsch_2022_topical.do
-writing nsch-pkg-test/01_original_csv/2022/var.csv 484×2
-writing nsch-pkg-test/01_original_csv/2022/define.csv 3280×3
-reading nsch-pkg-test/00_original_Stata/nsch_2022e_topical.dta
-writing nsch-pkg-test/01_original_csv/2022/surveys.csv 54103×484
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2021
-reading nsch-pkg-test/00_original_Stata/nsch_2021_topical.do
-writing nsch-pkg-test/01_original_csv/2021/var.csv 462×2
-writing nsch-pkg-test/01_original_csv/2021/define.csv 3122×3
-reading nsch-pkg-test/00_original_Stata/nsch_2021e_topical.dta
-writing nsch-pkg-test/01_original_csv/2021/surveys.csv 50892×462
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2020
-reading nsch-pkg-test/00_original_Stata/nsch_2020_topical.do
-writing nsch-pkg-test/01_original_csv/2020/var.csv 447×2
-writing nsch-pkg-test/01_original_csv/2020/define.csv 3018×3
-reading nsch-pkg-test/00_original_Stata/nsch_2020e_topical.dta
-writing nsch-pkg-test/01_original_csv/2020/surveys.csv 42777×447
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2019
-reading nsch-pkg-test/00_original_Stata/nsch_2019_topical.do
-writing nsch-pkg-test/01_original_csv/2019/var.csv 448×2
-writing nsch-pkg-test/01_original_csv/2019/define.csv 3024×3
-reading nsch-pkg-test/00_original_Stata/nsch_2019e_topical.dta
-writing nsch-pkg-test/01_original_csv/2019/surveys.csv 29433×448
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2018
-reading nsch-pkg-test/00_original_Stata/nsch_2018_topical.do
-writing nsch-pkg-test/01_original_csv/2018/var.csv 447×2
-writing nsch-pkg-test/01_original_csv/2018/define.csv 3009×3
-reading nsch-pkg-test/00_original_Stata/nsch_2018e_topical.dta
-writing nsch-pkg-test/01_original_csv/2018/surveys.csv 30530×447
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2017
-reading nsch-pkg-test/00_original_Stata/nsch_2017_topical.do
-writing nsch-pkg-test/01_original_csv/2017/var.csv 436×2
-writing nsch-pkg-test/01_original_csv/2017/define.csv 2935×3
-reading nsch-pkg-test/00_original_Stata/nsch_2017e_topical.dta
-writing nsch-pkg-test/01_original_csv/2017/surveys.csv 21599×436
-converting nsch-pkg-test/00_original_Stata to nsch-pkg-test/01_original_csv/2016
-reading nsch-pkg-test/00_original_Stata/nsch_2016_topical.do
-writing nsch-pkg-test/01_original_csv/2016/var.csv 432×2
-writing nsch-pkg-test/01_original_csv/2016/define.csv 2832×3
-reading nsch-pkg-test/00_original_Stata/nsch_2016e_topical.dta
-writing nsch-pkg-test/01_original_csv/2016/surveys.csv 50212×432
+> dcast(size_dt, year ~ data_type, value.var=c("rows", "cols"))
+    year rows_define rows_surveys rows_var cols_define cols_surveys cols_var
+1:  2016        2832        50212      432           3          432        2
+2:  2017        2935        21599      436           3          436        2
+3:  2018        3009        30530      447           3          447        2
+4:  2019        3024        29433      448           3          448        2
+5:  2020        3018        42777      447           3          447        2
+6:  2021        3122        50892      462           3          462        2
+7:  2022        3280        54103      484           3          484        2
+8:  2023        3113        55162      456           3          456        2
+9:  2024        3124        51375      457           3          457        2
 #+end_src
 
 ** 13 jan 2026

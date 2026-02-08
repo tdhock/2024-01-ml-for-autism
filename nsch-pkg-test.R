@@ -1,4 +1,5 @@
 fwrite_list <- function(data_list, year_dir, verbose=FALSE){
+  size_dt_list <- list()
   for(data_type in names(data_list)){
     type_dt <- data_list[[data_type]]
     out.csv <- file.path(
@@ -8,7 +9,13 @@ fwrite_list <- function(data_list, year_dir, verbose=FALSE){
       "writing %s %d×%d\n",
       out.csv, nrow(type_dt), ncol(type_dt)))
     data.table::fwrite(type_dt, out.csv)
+    size_dt_list[[data_type]] <- data.table(
+      out.csv,
+      data_type,
+      rows=nrow(type_dt),
+      cols=ncol(type_dt))
   }
+  rbindlist(size_dt_list)
 }
 
 parse_dta <- function(f)list(surveys=haven::read_stata(f))
@@ -20,6 +27,7 @@ Stata2csv <- function(Stata_dir, csv_dir, year, verbose=FALSE){
   year_dir <- file.path(csv_dir, year)
   if(verbose)cat(sprintf("converting %s to %s\n", Stata_dir, year_dir))
   dir.create(year_dir, showWarnings=FALSE, recursive=TRUE)
+  size_dt_list <- list()
   for(fmt in names(file_list)){
     read_fun <- file_list[[fmt]]
     data_file <- file.path(
@@ -27,8 +35,11 @@ Stata2csv <- function(Stata_dir, csv_dir, year, verbose=FALSE){
       sprintf(fmt, year))
     if(verbose)cat(sprintf("reading %s\n", data_file))
     data_list <- read_fun(data_file)
-    fwrite_list(data_list, year_dir, verbose)
+    fmt_sizes <- fwrite_list(data_list, year_dir, verbose)
+    size_dt_list[[fmt]] <- data.table(
+      data_file, fmt_sizes)
   }
+  rbindlist(size_dt_list)
 }
 
 get_year <- function(year_url, data.dir=tempdir()){
@@ -72,18 +83,27 @@ parse_do <- function(year.do){
   do_list
 }
 
-
-remotes::install_github("NAU-ASD3/nsch@download-funs")
-data_dir <- "NSCH_data"
-original_Stata <- file.path(data_dir, "00_original_Stata")
-dir.create(original_Stata, showWarnings = FALSE, recursive = TRUE)
-csv_dir <- file.path(data_dir, "01_original_csv")
-index_dt <- nsch::get_nsch_index(file.path(original_Stata, "datasets.html"))
-for(year_i in 1:nrow(index_dt)){
-  index_row <- index_dt[year_i]
-  get_year(index_row$url, original_Stata)
-  Stata2csv(
-    original_Stata, csv_dir,
-    index_row$year, verbose=TRUE)
+get_years_csv <- function(data_dir, verbose=FALSE){
+  original_Stata <- file.path(data_dir, "00_original_Stata")
+  dir.create(original_Stata, showWarnings = FALSE, recursive = TRUE)
+  csv_dir <- file.path(data_dir, "01_original_csv")
+  index_dt <- nsch::get_nsch_index(file.path(original_Stata, "datasets.html"))
+  size_dt_list <- list()
+  for(year_i in 1:nrow(index_dt)){
+    index_row <- index_dt[year_i]
+    get_year(index_row$url, original_Stata)
+    year_dt <- Stata2csv(
+      original_Stata, csv_dir,
+      index_row$year, verbose=TRUE)
+    size_dt_list[[year_i]] <- data.table(
+      index_row, year_dt)
+  }
+  size_dt <- rbindlist(size_dt_list)
+  data.table::fwrite(size_dt, "01_original_sizes.csv")
+  size_dt
 }
 
+library(data.table)
+remotes::install_github("NAU-ASD3/nsch@download-funs")
+(size_dt <- get_years_csv("NSCH_data", verbose=TRUE))
+dcast(size_dt, year ~ data_type, value.var=c("rows", "cols"))
